@@ -457,7 +457,31 @@
             footer { flex-direction: column; gap: 12px; text-align: center; }
         }
         
+        
+        @media (min-width: 701px) {
+  /* Targets the icons and the CV text */
+  .footer-mono i, 
+  .footer-mono a {
+    font-size: 1.2rem !important;
+  }
+
+  /* Specifically targets the small arrow icon next to CV */
+  .footer-mono a i.fa-arrow-right {
+    font-size: 14px !important; /* Slightly larger than your original 12px */
+  }
+}
+
+ 
+       
+
+
            .fa-brands:hover { color: var(--black); }
+           
+            @media (max-width: 700px) {
+
+   nav a:hover { color: var(--grey); }
+    .fa-brands:hover { color: var(--grey); }
+   }
     </style>
 </head>
 <body>
@@ -468,11 +492,11 @@
     Zachary Stephens
   </span>
          <span class="footer-mono" >
-          <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;"><i class="fa-brands fa-linkedin-in" style="font-size:1.2rem;"></i></a>
-           <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> <i class="fa-regular fa-envelope"style="font-size:1.2rem;"></i></a>
+          <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;"><i class="fa-brands fa-linkedin-in" style="font-size:1rem;"></i></a>
+           <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> <i class="fa-regular fa-envelope"style="font-size:1rem;"></i></a>
     
 
-        <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:17px">CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:13px"></i></a>
+        <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:1rem">CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i></a>
           </span>
         
     </nav>
