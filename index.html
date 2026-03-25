@@ -4,48 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zachary Stephens</title>
+    <title>Zachary Stephens | Product Designer</title>
+
+    <meta name="title" content="Zachary Stephens">
+    <meta name="description" content="Product design student @ the University of Leeds">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stephenszachary.com/">
+    <meta property="og:title" content="Zachary Stephens">
+    <meta property="og:description" content="Product design student @ the University of Leeds">
+    <meta property="twitter:url" content="https://stephenszachary.com/">
+    <meta property="twitter:title" content="Zachary Stephens">
+    <meta property="twitter:description" content="Product design student @ the University of Leeds">
+    
+    <link rel="canonical" href="https://stephenszachary.com/">
+    <link rel="icon" type="image/png" href="/ZSLOGO.png">
+    <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  
-
-<title>Zachary Stephens | Product Designer</title>
-<meta name="title" content="Zachary Stephens">
-<meta name="description" content="Product design student @ the University of Leeds">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://stephenszachary.com/">
-<meta property="og:title" content="Zachary Stephens">
-<meta property="og:description" content="Product design student @ the University of Leeds">
-
-
-
-<meta property="twitter:url" content="https://stephenszachary.com/">
-<meta property="twitter:title" content="Zachary Stephens">
-<meta property="twitter:description" content="Product design student @ the University of Leeds">
-
-
-<link rel="canonical" href="https://stephenszachary.com/">
-
-
-
-
-<link rel="icon" type="image/png" href="/ZSLOGO.png">
-    
-
-<link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
-    
-
-   
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; }
         
         html { 
-           scroll-behavior: smooth; 
+            scroll-behavior: smooth; 
         }
 
         :root {
@@ -94,7 +76,7 @@
             font-family: 'IBM Plex Mono', monospace;
             font-size: 15px;
             letter-spacing: 0.04em;
-            font-weight:400;
+            font-weight: 400;
         }
         nav a {
             font-family: 'IBM Plex Mono', monospace;
@@ -264,14 +246,11 @@
         .proj-title-main em { font-style: italic; }
         .proj-title-main a { text-decoration: none; color: inherit; }
         .proj-sub {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            color: var(--grey);
-            letter-spacing: 0.04em;
-            margin-bottom: 28px;
-            line-height: 1.6;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.5;
         }
-        .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .proj-tags { padding-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
         .proj-tags span {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 11px;
@@ -279,6 +258,7 @@
             text-transform: uppercase;
             color: var(--grey);
             border: 1px solid var(--light);
+            border-radius: 12px;
             padding: 7px 14px;
         }
         .proj-img-col {
@@ -316,6 +296,48 @@
             font-size: 13px;
             color: var(--grey);
             letter-spacing: 0.04em;
+        }
+        
+      .proj-footer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--grey);
+    padding: 40px 0;
+    border-right: 1px solid var(--light);
+    border-bottom: 1px solid var(--black);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    
+    /* 1. Force the box to match the height of the row */
+    align-self: stretch; 
+    /* 2. Vertically center the text inside that stretched box */
+    display: flex;
+    align-items: center; 
+}
+
+.proj-footer-body { 
+    padding: 40px 60px; 
+    border-bottom: 1px solid var(--black);
+    
+    /* 1. Force the box to match the height of the row */
+    align-self: stretch; 
+    /* 2. Vertically center the text inside that stretched box */
+    display: flex;
+    align-items: center; 
+}
+
+        /* Styling the link so it looks clickable */
+        .proj-footer-body a {
+            color: var(--black);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
+  
+        }
+        
+        .proj-footer-body a:hover {
+            color: var(--grey);
         }
 
         /* ── LARGE SCREEN ENHANCEMENTS ── */
@@ -360,15 +382,15 @@
                 padding: 48px 0;
                 font-size: 14px;
             }
-            .proj-sub {
-                font-size: 14px; 
-            }
+            
             footer {
                 padding: 44px 0;
             }
             footer a {
                 font-size: 22px;
             }
+            .proj-footer-label { padding: 48px 0; font-size: 14px; }
+            .proj-footer-body { padding: 48px 72px; }
         }
 
         /* ── ANIMS ── */
@@ -384,14 +406,15 @@
         }
 
         @media (min-width: 701px) {
-            .proj-title-main:hover { cursor:pointer; }
-            
-            .emaillarge  { font-size:1.1rem; padding-top:18px }
-            
-         
+            .proj-title-main:hover { cursor: pointer; }
+            .emaillarge  { font-size: 1.1rem; padding-top: 18px }
         }
 
         @media (max-width: 700px) {
+            .proj-sub {
+                font-size: 14px;
+                line-height: 1.2;
+            }
             .container { padding: 0 20px; }
             .hero {
                 grid-template-columns: 1fr;
@@ -429,78 +452,141 @@
                 grid-template-rows: auto auto;
             }
             .proj-body { padding: 20px 16px; }
-            .proj-img-col {
-                grid-column: 1 / span 2; 
-                border-left: none;
-                border-top: 1px solid var(--light);
-                padding: 16px 0 24px 0; 
-                display: block;
-            }
-            .proj-img-col img { 
-                width: 100%;
-                max-height: none;
-                object-fit: cover; 
-            }
-            .proj-link-mobile {
-                display: block;
-                margin-top: 20px;
-                padding: 0 16px;
-                font-family: 'IBM Plex Mono', monospace;
-                font-size: 12px;
-                color: var(--black);
-                text-decoration: none;
-                letter-spacing: 0.04em;
-                width: fit-content;
-                text-underline-offset: 5px; 
-                padding-bottom: 2px;
-            }
-            footer { flex-direction: column; gap: 12px; text-align: center; }
+            /* ── PROJECT GALLERY LOGIC ── */
         }
-        
+
+        /* ── PROJECT SECTION STRUCTURE ── */
+
+        .project {
+            display: grid;
+            grid-template-columns: 100px 1fr; /* Index on left, Content on right */
+            border-top: 1px solid var(--black);
+            margin-bottom: 80px;
+        }
+
+        .proj-index {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--grey);
+            padding: 40px 0;
+            border-right: 1px solid var(--light);
+            grid-row: 1; /* Keeps index at the top-left */
+        }
+
+        .proj-body { 
+            padding: 40px 60px; 
+            grid-row: 1; /* Keeps text at the top-right */
+        }
+
+        /* ── GALLERY (Desktop: 3 side-by-side) ── */
+        .proj-gallery {
+            grid-column: 1 / span 2; /* Spans across both columns */
+            padding: 20px 0 60px 0;
+        }
+
+        .gallery-track {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 16/12;
+            background: var(--light);
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── MOBILE RESPONSIVE (Carousel) ── */
+        @media (max-width: 700px) {
+            .project {
+                grid-template-columns: 44px 1fr;
+            }
+
+            .proj-body {
+                padding: 20px 16px;
+            }
+
+            .proj-gallery {
+                padding: 10px 0 40px 0;
+            }
+
+            .gallery-track {
+                display: flex; /* Switch to carousel */
+                grid-template-columns: none;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 12px;
+                padding: 0 20px;
+                scrollbar-width: none;
+            }
+
+            .gallery-track::-webkit-scrollbar { display: none; }
+
+            .gallery-item {
+                flex: 0 0 85%; /* Peek effect */
+                scroll-snap-align: center;
+            }
+            .proj-footer-label { padding: 20px 0; }
+            .proj-footer-body { padding: 20px 16px; }
+        }
+
+        /* Extra padding for very large screens */
+        @media (min-width: 1200px) {
+            .project { grid-template-columns: 120px 1fr; }
+            .proj-body { padding: 48px 72px; }
+            .gallery-track { gap: 32px; }
+        }
+
+        footer { flex-direction: column; gap: 12px; text-align: center; }
         
         @media (min-width: 701px) {
-  /* Targets the icons and the CV text */
-  .footer-mono i, 
-  .footer-mono a {
-    font-size: 1.2rem !important;
-  }
+            /* Targets the icons and the CV text */
+            .footer-mono i, 
+            .footer-mono a {
+                font-size: 1.2rem !important;
+            }
 
-  /* Specifically targets the small arrow icon next to CV */
-  .footer-mono a i.fa-arrow-right {
-    font-size: 14px !important; /* Slightly larger than your original 12px */
-  }
-}
+            /* Specifically targets the small arrow icon next to CV */
+            .footer-mono a i.fa-arrow-right {
+                font-size: 14px !important; /* Slightly larger than your original 12px */
+            }
+        }
 
- 
-       
-
-
-           .fa-brands:hover { color: var(--black); }
-           
-            @media (max-width: 700px) {
-
-   nav a:hover { color: var(--grey); }
-    .fa-brands:hover { color: var(--grey); }
-
-                .meta-value { line-height:0 !important; }
-   }
+        .fa-brands:hover { color: var(--black); }
+        
+        @media (max-width: 700px) {
+            nav a:hover { color: var(--grey); }
+            .fa-brands:hover { color: var(--grey); }
+            .meta-value { line-height: 0 !important; }
+        }
     </style>
 </head>
 <body>
 
 <div class="above-fold container">
-    <nav> <span class="nav-name" style="letter-spacing:0px;">
-    <img src="/ZSLOGO.png" style="width:30px; vertical-align: middle;">
-    Zachary Stephens
-  </span>
-         <span class="footer-mono" >
-          <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;"><i class="fa-brands fa-linkedin-in" style="font-size:1rem;"></i></a>
-           <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> <i class="fa-regular fa-envelope"style="font-size:1rem;"></i></a>
-    
-
-        <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:1rem">CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i></a>
-          </span>
-        
+    <nav> 
+        <span class="nav-name" style="letter-spacing:0px;">
+            <img src="https://stephenszachary.com//ZSLOGO.png" style="width:30px; vertical-align: middle;">
+            Zachary Stephens
+        </span>
+        <span class="footer-mono">
+            <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;">
+                <i class="fa-brands fa-linkedin-in" style="font-size:1rem;"></i>
+            </a>
+            <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> 
+                <i class="fa-regular fa-envelope" style="font-size:1rem;"></i>
+            </a>
+            <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:1rem">
+                CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i>
+            </a>
+        </span>
     </nav>
 
     <section class="hero">
@@ -521,28 +607,55 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Experience</span>
-                    <span class="meta-value">Air Liquide, Paris<br> 2025–2026</span>
+                    <span class="meta-value">Air Liquide, Paris<br> 2025-2026</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Location</span>
                     <span class="meta-value">London, UK</span>
                 </div>
-                
             </div>
-            
         </div>
         <div class="hero-photo">
-            <img src="/me.jpeg" alt="Zachary Stephens">
+            <img src="https://stephenszachary.com//me.jpeg" alt="Zachary Stephens">
             <p class="photo-caption">Me at the 2024 Paris Olympics</p>
-            
         </div>
-       
+    </section>
+</div> 
+
+<div class="container reveal-on-scroll">
+    <section class="projects-section">
+        <div class="work-header">
+            <span class="section-label">Selected Work</span>
+        </div>
+        
+        <div class="project">
+            <div class="proj-index">01</div>
+            <div class="proj-body">
+                <h2 class="proj-title-main">Leeds<em> Student Radio </em>Website</h2>
+                <p class="proj-sub">Description of the project goes here. Keep it concise and engaging.</p>
+                <div class="proj-tags">
+                    <span>UX & UI Design</span>
+                    <span>Live Chat</span>
+                </div>
+            </div>
+            
+            <div class="proj-gallery">
+                <div class="gallery-track">
+                    <div class="gallery-item"><img src="https://stephenszachary.com//me.jpeg" alt="Project view 1"></div>
+                    <div class="gallery-item"><img src="https://stephenszachary.com//me.jpeg" alt="Project view 2"></div>
+                    <div class="gallery-item"><img src="https://stephenszachary.com//me.jpeg" alt="Project view 3"></div>
+                    
+                </div>
+                
+            </div>
+            <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            <div class="proj-footer-body">
+                <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
+            </div>
+        </div>
+      
+    </section>
 </div>
-
-
-
-   
-
 
 <script>
     document.addEventListener('scroll', () => {
