@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zachary Stephens | Product Designer</title>
+
+    <meta name="title" content="Zachary Stephens">
+    <meta name="description" content="Product design student @ the University of Leeds">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stephenszachary.com/">
+    <meta property="og:title" content="Zachary Stephens">
+    <meta property="og:description" content="Product design student @ the University of Leeds">
+    <meta property="twitter:url" content="https://stephenszachary.com/">
+    <meta property="twitter:title" content="Zachary Stephens">
+    <meta property="twitter:description" content="Product design student @ the University of Leeds">
+    
+    <link rel="canonical" href="https://stephenszachary.com/">
+    <link rel="icon" type="image/png" href="/ZSLOGO.png">
+    <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    
+ <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        :root {
+            --black: #111;
+            --white: #fff;
+            --grey: #888;
+            --light: #e0e0e0;
+          
+            /* ── FONT VARIABLES ── */
+            --font-main: 'Bricolage Grotesque', sans-serif;
+            --font-mono: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+            font-family: var(--font-main);
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { 
+            padding: 0 52px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── ABOVE-FOLD WRAPPER ── */
+        .above-fold {
+            position: relative;
+            height: 100svh;
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start; 
+            scroll-snap-stop: always;
+        }
+
+        /* ── NAV ── */
+        nav {
+            flex-shrink: 0;
+            padding: 36px 0;
+            padding-bottom: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            opacity: 0;
+            animation: appear 0.6s 0.05s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .nav-name {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            letter-spacing: 0.04em;
+            font-weight: 400;
+        }
+        nav a {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--grey);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+        }
+        nav a:hover { color: var(--black); }
+
+        /* ── HERO ── */
+        .hero {
+            flex: 1;           
+            min-height: 0;      
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: center;
+            padding: 48px 0;
+            opacity: 0;
+            animation: appear 0.8s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .hero-headline {
+            font-size: clamp(32px, 5.5vw, 96px);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 48px;
+        }
+        .hero-headline em { font-style: italic; }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--light);
+        }
+        .meta-item {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--light);
+        }
+        .meta-item:nth-child(odd)  { padding-right: 28px; border-right: 1px solid var(--light); }
+        .meta-item:nth-child(even) { padding-left: 28px; }
+        .meta-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--grey);
+            display: block;
+            margin-bottom: 7px;
+        }
+        .meta-value { font-size: 17px; font-weight: 400; line-height: 1.5; }
+
+        .hero-photo {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-photo img {
+            width: 100%;
+            max-height: calc(100dvh - 120px);
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        .photo-caption {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--grey);
+            letter-spacing: 0.06em;
+            margin-top: 12px;
+        }
+        
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            animation: appear 0.5s 0.8s forwards, float 2s ease-in-out infinite;
+            pointer-events: none; 
+            transition: opacity 0.4s ease;
+        }
+        .scroll-indicator.is-hidden {
+            opacity: 0 !important;
+        }
+        .scroll-indicator span {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--grey);
+        }
+
+        /* ── SCROLL REVEAL CLASSES ── */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+
+        /* ── WORK SECTION ── */
+        .projects-section {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 56px 0; 
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .work-header {
+            padding: 0 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        /* ── PROJECT SECTION STRUCTURE ── */
+        .project {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            border-top: 1px solid var(--black);
+            margin-bottom: 80px;
+        }
+
+        .proj-index {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--grey);
+            padding: 40px 0;
+            border-right: 1px solid var(--light);
+            grid-row: 1; 
+        }
+
+        .proj-body { 
+            padding: 40px 60px; 
+            grid-row: 1; 
+        }
+
+        .proj-title-main {
+            font-size: clamp(28px, 4.2vw, 72px);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .proj-title-main em { font-style: italic; }
+        .proj-title-main a { text-decoration: none; color: inherit; }
+        
+        .proj-sub {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .proj-tags { padding-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .proj-tags span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--grey);
+            border: 1px solid var(--light);
+            border-radius: 12px;
+            padding: 7px 14px;
+        }
+
+        /* ── GALLERY (Desktop: 3 side-by-side) ── */
+        .proj-gallery {
+            grid-column: 1 / span 2; 
+            padding: 20px 0 20px 0;
+        }
+        .gallery-track {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 16/12;
+            background: var(--light);
+            overflow: hidden;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── PROJECT FOOTER ── */
+        .proj-footer-label {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--grey);
+            padding: 40px 0;
+            border-right: 1px solid var(--light);
+            border-bottom: 1px solid var(--black);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            align-self: stretch; 
+            display: flex;
+            align-items: center; 
+        }
+        .proj-footer-body { 
+            padding: 40px 60px; 
+            border-bottom: 1px solid var(--black);
+            align-self: stretch; 
+            display: flex;
+            align-items: center; 
+        }
+        .proj-footer-body a {
+            color: var(--black);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
+        }
+        .proj-footer-body a:hover {
+            color: var(--grey);
+        }
+
+        /* ── ABOUT SECTION (NEW) ── */
+        .about-section {
+            padding: 56px 0 100px;
+            border-top: 1px solid var(--black);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: start;
+        }
+        .about-text .proj-title-main {
+            margin-bottom: 24px;
+        }
+        .about-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--light);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--black);
+            padding: 36px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer a {
+            color: var(--black);
+            font-size: 20px;
+            font-weight: 400;
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 1px;
+        }
+        footer a:hover { border-bottom-color: transparent; }
+        .footer-mono {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--grey);
+            letter-spacing: 0.04em;
+        }
+
+        /* ── LARGE SCREEN ENHANCEMENTS ── */
+        @media (min-width: 1200px) {
+            .container { padding: 0 72px; }
+            nav { padding: 44px 0 0; }
+            .nav-name { font-size: 16px; }
+            .hero {
+                grid-template-columns: 1fr 420px;
+                gap: 100px;
+                padding: 56px 0;
+            }
+            .hero-headline {
+                font-size: clamp(48px, 6vw, 96px);
+                margin-bottom: 56px;
+            }
+            .meta-item { padding: 22px 0; }
+            .meta-value { font-size: 18px; }
+            .hero-photo img { max-height: calc(100dvh - 110px); }
+            
+            .project { grid-template-columns: 120px 1fr; }
+            .proj-body { padding: 48px 72px; }
+            .gallery-track { gap: 32px; }
+            .proj-index { padding: 48px 0; font-size: 14px; }
+            .proj-footer-label { padding: 38px 0; font-size: 14px; }
+            .proj-footer-body { padding: 38px 72px; }
+
+            .about-grid {
+                grid-template-columns: 1fr 420px;
+                gap: 100px;
+            }
+            
+            footer { padding: 44px 0; flex-direction: row; gap: 0;}
+            footer a { font-size: 22px; }
+        }
+
+        /* ── ANIMS ── */
+        @keyframes appear {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero, .about-grid { grid-template-columns: 1fr 260px; gap: 40px; }
+        }
+
+        @media (min-width: 701px) {
+            .proj-title-main:hover { cursor: pointer; }
+            .emaillarge  { font-size: 1.1rem; padding-top: 18px }
+            .footer-mono i, .footer-mono a { font-size: 1.2rem !important; }
+            .footer-mono a i.fa-arrow-right { font-size: 14px !important; }
+        }
+
+        @media (max-width: 700px) {
+            .proj-sub { font-size: 14px; line-height: 1.2; }
+            .container { padding: 0 20px; }
+            .hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                gap: 0;
+                padding: 0;
+                align-items: stretch;
+            }
+            .hero-photo {
+                order: -1;
+                height: 38svh;
+                justify-content: flex-start;
+                padding: 20px 0 16px;
+            }
+            .hero-photo img {
+                width: auto;
+                height: 100%;
+                max-height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            .hero-text { padding: 16px 0 24px; overflow: hidden; }
+            .hero-headline { font-size: clamp(28px, 8vw, 52px); margin-bottom: 20px; }
+            .meta-value { font-size: 14px; line-height: 0 !important; }
+            .meta-item { padding: 10px 0; }
+
+            .project { grid-template-columns: 44px 1fr; }
+            .proj-body { padding: 20px 16px; }
+            .proj-gallery { padding: 10px 0 10px 0; }
+            
+            .gallery-track {
+                display: flex;
+                grid-template-columns: none;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 12px;
+                padding: 0 20px;
+                scrollbar-width: none;
+            }
+            .gallery-track::-webkit-scrollbar { display: none; }
+            .gallery-item { flex: 0 0 85%; scroll-snap-align: center; }
+            .proj-footer-label { padding: 20px 0; }
+            .proj-footer-body { padding: 20px 16px; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            
+            nav a:hover { color: var(--grey); }
+            .fa-brands:hover { color: var(--grey); }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        .fa-brands:hover { color: var(--black); }
+    </style>
+</head>
+<body>
+
+<div class="above-fold container">
+    <nav> 
+        <span class="nav-name" style="letter-spacing:0px;">
+            <img src="/ZSLOGO.png" style="width:30px; vertical-align: middle;">
+            Zachary Stephens
+        </span>
+        <span class="footer-mono">
+            <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;">
+                <i class="fa-brands fa-linkedin-in" style="font-size:1rem;"></i>
+            </a>
+            <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> 
+                <i class="fa-regular fa-envelope" style="font-size:1rem;"></i>
+            </a>
+            <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:1rem">
+                CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i>
+            </a>
+        </span>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hero-headline">
+                Designing products<br>
+                <em>people actually</em><br>
+                want to use.
+            </h1>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Focus</span>
+                    <span class="meta-value">Industrial &amp; Interaction</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Education</span>
+                    <span class="meta-value">Product Design BSc, University of Leeds</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Experience</span>
+                    <span class="meta-value">Air Liquide, Paris<br> 2025-2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Location</span>
+                    <span class="meta-value">London, UK</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="/me.jpeg" alt="Zachary Stephens">
+            <p class="photo-caption">Me at the 2024 Paris Olympics</p>
+        </div>
+    </section>
+</div> 
+
+<div class="container reveal-on-scroll">
+    <section class="projects-section">
+        <div class="work-header">
+            <span class="section-label">Selected Work</span>
+        </div>
+        
+        <div class="project">
+            <div class="proj-index">01</div>
+            <div class="proj-body">
+                <h2 class="proj-title-main">Leeds<em> Student Radio </em>Website</h2>
+                <p class="proj-sub">I redesigned the digital home for LSR, the UK’s best student station (2023 & 24). By blending their bold brand identity with intuitive UX, I created a platform that captures the raw energy of student radio.</p>
+                <div class="proj-tags">
+                    <span>UX & UI</span>
+                    <span>Live Chat</span>
+                      <span>Dynamic Schedule</span>
+                </div>
+            </div>
+            
+            <div class="proj-gallery">
+                <div class="gallery-track">
+                    <div class="gallery-item"><img src="/Lsr-mob.png" alt="Mobile Mockup LSR"></div>
+                    <div class="gallery-item"><img src="/New-Sch-LSR.png" alt="Laptop Mockup LSR"></div>
+                    <div class="gallery-item"><img src="/New-Mac-LSR.png" alt="LSR Homepage Mockup"></div>
+                </div>
+            </div>
+            
+            <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            <div class="proj-footer-body">
+                <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
+            </div>
+        </div>
+      
+    </section>
+</div>
+
+<div class="container reveal-on-scroll delay-1">
+    <section class="about-section">
+        <div class="work-header">
+            <span class="section-label">About</span>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="proj-title-main">Bridging the gap between <em>industrial</em> and <em>digital</em> design.</h2>
+                <p class="proj-sub" style="margin-bottom: 20px;">
+                    Hi, I'm Zachary. As a Product Design student at the University of Leeds, my focus lies in crafting experiences that look beautiful but function intuitively. My approach stems from deep user empathy, whether I'm sketching a physical product or wireframing a digital interface.
+                </p>
+                <p class="proj-sub">
+                    Currently based in Paris, I am working with Air Liquide to understand how thoughtful design scales in complex, real-world environments.
+                </p>
+            </div>
+            
+            <div class="about-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Capabilities</span>
+                    <span class="meta-value">3D ModelingUI/UX Design<br>Prototyping<br>Front & Back Dev</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">SolidWorks & Sharp3d<br>Adobe Id, Xd, Ai, Ph<br>Blender & ProCreate<br>Github & Firebase</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:zachstep05@gmail.com">Let's work together</a>
+        <div class="footer-mono">© 2026 Zachary Stephens</div>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('scroll', () => {
+        const indicator = document.querySelector('.scroll-indicator');
+        if (indicator) {
+            if (window.scrollY > 30) {
+                indicator.classList.add('is-hidden');
+            } else {
+                indicator.classList.remove('is-hidden');
+            }
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
+
+</body>
+</html>
