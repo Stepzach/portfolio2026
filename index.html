@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zachary Stephens</title>
     <title>Zachary Stephens | Product Designer</title>
 
     <meta name="title" content="Zachary Stephens">
@@ -219,23 +218,28 @@
             color: var(--grey);
         }
 
+        /* ── PROJECT SECTION STRUCTURE ── */
         .project {
-            border-top: 1px solid var(--black);
             display: grid;
-            grid-template-columns: 100px 1fr 500px;
-            align-items: start;
-            cursor: default;
+            grid-template-columns: 100px 1fr;
+            border-top: 1px solid var(--black);
+            margin-bottom: 80px;
         }
-        
+
         .proj-index {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 13px;
             color: var(--grey);
             padding: 40px 0;
             border-right: 1px solid var(--light);
-            letter-spacing: 0.06em;
+            grid-row: 1; 
         }
-        .proj-body { padding: 40px 60px; }
+
+        .proj-body { 
+            padding: 40px 60px; 
+            grid-row: 1; 
+        }
+
         .proj-title-main {
             font-size: clamp(28px, 4.2vw, 72px);
             font-weight: 300;
@@ -245,11 +249,13 @@
         }
         .proj-title-main em { font-style: italic; }
         .proj-title-main a { text-decoration: none; color: inherit; }
+        
         .proj-sub {
             font-size: 17px;
             font-weight: 400;
             line-height: 1.5;
         }
+
         .proj-tags { padding-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; }
         .proj-tags span {
             font-family: 'IBM Plex Mono', monospace;
@@ -261,17 +267,79 @@
             border-radius: 12px;
             padding: 7px 14px;
         }
-        .proj-img-col {
-            border-left: 1px solid var(--light);
-            padding: 32px 40px;
-            align-self: stretch;
-            display: flex;
-            align-items: center;
+
+        /* ── GALLERY (Desktop: 3 side-by-side) ── */
+        .proj-gallery {
+            grid-column: 1 / span 2; 
+            padding: 20px 0 20px 0;
         }
-        .proj-img-col img { width: 100%; display: block; }
-        
-        .proj-link-mobile {
-            display: none;
+        .gallery-track {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 16/12;
+            background: var(--light);
+            overflow: hidden;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── PROJECT FOOTER ── */
+        .proj-footer-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--grey);
+            padding: 40px 0;
+            border-right: 1px solid var(--light);
+            border-bottom: 1px solid var(--black);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            align-self: stretch; 
+            display: flex;
+            align-items: center; 
+        }
+        .proj-footer-body { 
+            padding: 40px 60px; 
+            border-bottom: 1px solid var(--black);
+            align-self: stretch; 
+            display: flex;
+            align-items: center; 
+        }
+        .proj-footer-body a {
+            color: var(--black);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
+        }
+        .proj-footer-body a:hover {
+            color: var(--grey);
+        }
+
+        /* ── ABOUT SECTION (NEW) ── */
+        .about-section {
+            padding: 56px 0 100px;
+            border-top: 1px solid var(--black);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: start;
+        }
+        .about-text .proj-title-main {
+            margin-bottom: 24px;
+        }
+        .about-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--light);
         }
 
         /* ── FOOTER ── */
@@ -297,60 +365,12 @@
             color: var(--grey);
             letter-spacing: 0.04em;
         }
-        
-      .proj-footer-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--grey);
-    padding: 40px 0;
-    border-right: 1px solid var(--light);
-    border-bottom: 1px solid var(--black);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    
-    /* 1. Force the box to match the height of the row */
-    align-self: stretch; 
-    /* 2. Vertically center the text inside that stretched box */
-    display: flex;
-    align-items: center; 
-}
-
-.proj-footer-body { 
-    padding: 40px 60px; 
-    border-bottom: 1px solid var(--black);
-    
-    /* 1. Force the box to match the height of the row */
-    align-self: stretch; 
-    /* 2. Vertically center the text inside that stretched box */
-    display: flex;
-    align-items: center; 
-}
-
-        /* Styling the link so it looks clickable */
-        .proj-footer-body a {
-            color: var(--black);
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 4px;
-            transition: color 0.2s ease;
-  
-        }
-        
-        .proj-footer-body a:hover {
-            color: var(--grey);
-        }
 
         /* ── LARGE SCREEN ENHANCEMENTS ── */
         @media (min-width: 1200px) {
-            .container {
-                padding: 0 72px;
-            }
-            nav {
-                padding: 44px 0 0;
-            }
-            .nav-name {
-                font-size: 16px;
-            }
+            .container { padding: 0 72px; }
+            nav { padding: 44px 0 0; }
+            .nav-name { font-size: 16px; }
             .hero {
                 grid-template-columns: 1fr 420px;
                 gap: 100px;
@@ -360,37 +380,24 @@
                 font-size: clamp(48px, 6vw, 96px);
                 margin-bottom: 56px;
             }
-            .meta-item {
-                padding: 22px 0;
-            }
-            .meta-value {
-                font-size: 18px;
-            }
-            .hero-photo img {
-                max-height: calc(100dvh - 110px);
-            }
-            .project {
-                grid-template-columns: 120px 1fr 560px;
-            }
-            .proj-body {
-                padding: 48px 72px;
-            }
-            .proj-img-col {
-                padding: 40px 48px;
-            }
-            .proj-index {
-                padding: 48px 0;
-                font-size: 14px;
-            }
+            .meta-item { padding: 22px 0; }
+            .meta-value { font-size: 18px; }
+            .hero-photo img { max-height: calc(100dvh - 110px); }
             
-            footer {
-                padding: 44px 0;
-            }
-            footer a {
-                font-size: 22px;
-            }
+            .project { grid-template-columns: 120px 1fr; }
+            .proj-body { padding: 48px 72px; }
+            .gallery-track { gap: 32px; }
+            .proj-index { padding: 48px 0; font-size: 14px; }
             .proj-footer-label { padding: 38px 0; font-size: 14px; }
             .proj-footer-body { padding: 38px 72px; }
+
+            .about-grid {
+                grid-template-columns: 1fr 420px;
+                gap: 100px;
+            }
+            
+            footer { padding: 44px 0; flex-direction: row; gap: 0;}
+            footer a { font-size: 22px; }
         }
 
         /* ── ANIMS ── */
@@ -401,20 +408,18 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr 260px; gap: 40px; }
-            .project { grid-template-columns: 80px 1fr 420px; }
+            .hero, .about-grid { grid-template-columns: 1fr 260px; gap: 40px; }
         }
 
         @media (min-width: 701px) {
             .proj-title-main:hover { cursor: pointer; }
             .emaillarge  { font-size: 1.1rem; padding-top: 18px }
+            .footer-mono i, .footer-mono a { font-size: 1.2rem !important; }
+            .footer-mono a i.fa-arrow-right { font-size: 14px !important; }
         }
 
         @media (max-width: 700px) {
-            .proj-sub {
-                font-size: 14px;
-                line-height: 1.2;
-            }
+            .proj-sub { font-size: 14px; line-height: 1.2; }
             .container { padding: 0 20px; }
             .hero {
                 grid-template-columns: 1fr;
@@ -436,89 +441,17 @@
                 object-fit: cover;
                 object-position: center;
             }
-            .hero-text {
-                padding: 16px 0 24px;
-                overflow: hidden;
-            }
-            .hero-headline {
-                font-size: clamp(28px, 8vw, 52px);
-                margin-bottom: 20px;
-            }
-            .meta-value { font-size: 14px; }
+            .hero-text { padding: 16px 0 24px; overflow: hidden; }
+            .hero-headline { font-size: clamp(28px, 8vw, 52px); margin-bottom: 20px; }
+            .meta-value { font-size: 14px; line-height: 0 !important; }
             .meta-item { padding: 10px 0; }
 
-            .project {
-                grid-template-columns: 44px 1fr;
-                grid-template-rows: auto auto;
-            }
+            .project { grid-template-columns: 44px 1fr; }
             .proj-body { padding: 20px 16px; }
-            /* ── PROJECT GALLERY LOGIC ── */
-        }
-
-        /* ── PROJECT SECTION STRUCTURE ── */
-
-        .project {
-            display: grid;
-            grid-template-columns: 100px 1fr; /* Index on left, Content on right */
-            border-top: 1px solid var(--black);
-            margin-bottom: 80px;
-        }
-
-        .proj-index {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            color: var(--grey);
-            padding: 40px 0;
-            border-right: 1px solid var(--light);
-            grid-row: 1; /* Keeps index at the top-left */
-        }
-
-        .proj-body { 
-            padding: 40px 60px; 
-            grid-row: 1; /* Keeps text at the top-right */
-        }
-
-        /* ── GALLERY (Desktop: 3 side-by-side) ── */
-        .proj-gallery {
-            grid-column: 1 / span 2; /* Spans across both columns */
-            padding: 20px 0 20px 0;
-        }
-
-        .gallery-track {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .gallery-item {
-            aspect-ratio: 16/12;
-            background: var(--light);
-            overflow: hidden;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* ── MOBILE RESPONSIVE (Carousel) ── */
-        @media (max-width: 700px) {
-            .project {
-                grid-template-columns: 44px 1fr;
-            }
-
-            .proj-body {
-                padding: 20px 16px;
-            }
-
-            .proj-gallery {
-                padding: 10px 0 10px 0;
-            }
-
+            .proj-gallery { padding: 10px 0 10px 0; }
+            
             .gallery-track {
-                display: flex; /* Switch to carousel */
+                display: flex;
                 grid-template-columns: none;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
@@ -526,46 +459,19 @@
                 padding: 0 20px;
                 scrollbar-width: none;
             }
-
             .gallery-track::-webkit-scrollbar { display: none; }
-
-            .gallery-item {
-                flex: 0 0 85%; /* Peek effect */
-                scroll-snap-align: center;
-            }
+            .gallery-item { flex: 0 0 85%; scroll-snap-align: center; }
             .proj-footer-label { padding: 20px 0; }
             .proj-footer-body { padding: 20px 16px; }
-        }
 
-        /* Extra padding for very large screens */
-        @media (min-width: 1200px) {
-            .project { grid-template-columns: 120px 1fr; }
-            .proj-body { padding: 48px 72px; }
-            .gallery-track { gap: 32px; }
-        }
-
-        footer { flex-direction: column; gap: 12px; text-align: center; }
-        
-        @media (min-width: 701px) {
-            /* Targets the icons and the CV text */
-            .footer-mono i, 
-            .footer-mono a {
-                font-size: 1.2rem !important;
-            }
-
-            /* Specifically targets the small arrow icon next to CV */
-            .footer-mono a i.fa-arrow-right {
-                font-size: 14px !important; /* Slightly larger than your original 12px */
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            
+            nav a:hover { color: var(--grey); }
+            .fa-brands:hover { color: var(--grey); }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
         }
 
         .fa-brands:hover { color: var(--black); }
-        
-        @media (max-width: 700px) {
-            nav a:hover { color: var(--grey); }
-            .fa-brands:hover { color: var(--grey); }
-            .meta-value { line-height: 0 !important; }
-        }
     </style>
 </head>
 <body>
@@ -645,10 +551,9 @@
                     <div class="gallery-item"><img src="/Lsr-mob.png" alt="Mobile Mockup LSR"></div>
                     <div class="gallery-item"><img src="/New-Sch-LSR.png" alt="Laptop Mockup LSR"></div>
                     <div class="gallery-item"><img src="/New-Mac-LSR.png" alt="LSR Homepage Mockup"></div>
-                    
                 </div>
-                
             </div>
+            
             <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
             <div class="proj-footer-body">
                 <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
@@ -656,6 +561,41 @@
         </div>
       
     </section>
+</div>
+
+<div class="container reveal-on-scroll delay-1">
+    <section class="about-section">
+        <div class="work-header">
+            <span class="section-label">About</span>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="proj-title-main">Bridging the gap between <em>industrial</em> and <em>digital</em> design.</h2>
+                <p class="proj-sub" style="margin-bottom: 20px;">
+                    Hi, I'm Zachary. As a Product Design student at the University of Leeds, my focus lies in crafting experiences that look beautiful but function intuitively. My approach stems from deep user empathy, whether I'm sketching a physical product or wireframing a digital interface.
+                </p>
+                <p class="proj-sub">
+                    Currently based in Paris, I am working with Air Liquide to understand how thoughtful design scales in complex, real-world environments.
+                </p>
+            </div>
+            
+            <div class="about-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Capabilities</span>
+                    <span class="meta-value">3D Modeling<br>UI/UX Design<br>Prototyping<br>Front & Back Dev</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">SolidWorks & Sharp3d<br>Adobe Id, Xd, Ai, Ph<br>Blender & ProCreate<br>Github & Firebase</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:zachstep05@gmail.com">Let's work together</a>
+        <div class="footer-mono">© 2026 Zachary Stephens</div>
+    </footer>
 </div>
 
 <script>
