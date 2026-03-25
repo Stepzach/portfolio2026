@@ -20,9 +20,14 @@
     <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     
+   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Urbanist:wght@300;400&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@900&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+   
+   <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@900&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+   
     
- <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,10 +41,11 @@
             --white: #fff;
             --grey: #888;
             --light: #e0e0e0;
-          
+            
             /* ── FONT VARIABLES ── */
-            --font-main: 'Bricolage Grotesque', sans-serif;
-            --font-mono: 'Outfit', sans-serif;
+            --font-main: 'Lexend', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Manrope', sans-serif;
         }
 
         body {
@@ -134,7 +140,12 @@
             display: block;
             margin-bottom: 7px;
         }
-        .meta-value { font-size: 17px; font-weight: 400; line-height: 1.5; }
+        .meta-value { 
+            font-family: var(--font-sans) !important;
+            font-size: 17px; 
+            font-weight: 400; 
+            line-height: 1.5; 
+        }
 
         .hero-photo {
             height: 100%;
@@ -257,6 +268,7 @@
         .proj-title-main a { text-decoration: none; color: inherit; }
         
         .proj-sub {
+            font-family: var(--font-sans) !important; /* Updated */
             font-size: 17px;
             font-weight: 400;
             line-height: 1.5;
@@ -385,6 +397,7 @@
             .hero-headline {
                 font-size: clamp(48px, 6vw, 96px);
                 margin-bottom: 56px;
+                    line-height: 0.98;
             }
             .meta-item { padding: 22px 0; }
             .meta-value { font-size: 18px; }
@@ -515,7 +528,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Education</span>
-                    <span class="meta-value">Product Design BSc, University of Leeds</span>
+                    <span class="meta-value">Product Design, University of Leeds</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Experience</span>
