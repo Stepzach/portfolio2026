@@ -20,10 +20,8 @@
     <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     
-   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Urbanist:wght@300;400&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@900&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-   
-   <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@900&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Manrope:wght@400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  
    
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -84,10 +82,15 @@
             animation: appear 0.6s 0.05s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         .nav-name {
-            font-family: var(--font-mono);
+            font-family: var(--font-main);
             font-size: 15px;
             letter-spacing: 0.04em;
             font-weight: 400;
+           
+        }
+         .nav-name img {
+           margin-right:5px;
+           
         }
         nav a {
             font-family: var(--font-mono);
@@ -433,7 +436,7 @@
         @media (min-width: 701px) {
             .proj-title-main:hover { cursor: pointer; }
             .emaillarge  { font-size: 1.1rem; padding-top: 18px }
-            .footer-mono i, .footer-mono a { font-size: 1.2rem !important; }
+          
             .footer-mono a i.fa-arrow-right { font-size: 14px !important; }
         }
 
@@ -491,6 +494,39 @@
         }
 
         .fa-brands:hover { color: var(--black); }
+        
+        
+        /* New styles for About Images */
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-img-wrapper {
+    width: 100%;
+    background: var(--light);
+    overflow: hidden;
+    max-height:290px;
+}
+
+.about-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Ensure the about-meta stays neat below text on mobile */
+@media (max-width: 700px) {
+    .about-images {
+        margin-top: 10px;
+        order: 3; /* Places images at the bottom of the grid on mobile */
+    }
+    .hideer {
+       display: none !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -502,13 +538,8 @@
             Zachary Stephens
         </span>
         <span class="footer-mono">
-            <a href="https://www.linkedin.com/in/zacharystephens05/" target="_blank" rel="noopener" style="border:none; margin-right:15px;">
-                <i class="fa-brands fa-linkedin-in" style="font-size:1rem;"></i>
-            </a>
-            <a href="mailto:zachstep05@gmail.com" rel="noopener" style="border:none; margin-right:15px;"> 
-                <i class="fa-regular fa-envelope" style="font-size:1rem;"></i>
-            </a>
-            <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-weight:650; font-size:1rem">
+           
+            <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-size:1rem">
                 CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i>
             </a>
         </span>
@@ -553,7 +584,7 @@
             <span class="section-label">Selected Work</span>
         </div>
         
-        <div class="project">
+        <div class="project" style="    margin-bottom: 0px;">
             <div class="proj-index">01</div>
             <div class="proj-body">
                 <h2 class="proj-title-main">Leeds<em> Student Radio </em>Website</h2>
@@ -578,7 +609,32 @@
                 <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
             </div>
         </div>
-      
+        
+       <div class="project" style="margin-top:0; padding-top:0; border-top:none;" >
+            <div class="proj-index" >02</div>
+            <div class="proj-body">
+                <h2 class="proj-title-main">Cardboard<em> Blueberry </em>Packaging</h2>
+                <p class="proj-sub">I redesigned the digital home for LSR, the UK’s best student station (2023 & 24). By blending their bold brand identity with intuitive UX, I created a platform that captures the raw energy of student radio.</p>
+                <div class="proj-tags">
+                    <span>UX & UI</span>
+                    <span>Live Chat</span>
+                      <span>Dynamic Schedule</span>
+                </div>
+            </div>
+            
+            <div class="proj-gallery">
+                <div class="gallery-track">
+                    <div class="gallery-item"><img src="/Lsr-mob.png" alt="Mobile Mockup LSR"></div>
+                    <div class="gallery-item"><img src="/New-Sch-LSR.png" alt="Laptop Mockup LSR"></div>
+                    <div class="gallery-item"><img src="/New-Mac-LSR.png" alt="LSR Homepage Mockup"></div>
+                </div>
+            </div>
+            
+            <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            <div class="proj-footer-body">
+                <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
+            </div>
+        </div>
     </section>
 </div>
 
@@ -587,28 +643,39 @@
         <div class="work-header">
             <span class="section-label">About</span>
         </div>
-        <div class="about-grid">
-            <div class="about-text">
-                <h2 class="proj-title-main">Bridging the gap between <em>industrial</em> and <em>digital</em> design.</h2>
-                <p class="proj-sub" style="margin-bottom: 20px;">
-                    Hi, I'm Zachary. As a Product Design student at the University of Leeds, my focus lies in crafting experiences that look beautiful but function intuitively. My approach stems from deep user empathy, whether I'm sketching a physical product or wireframing a digital interface.
-                </p>
-                <p class="proj-sub">
-                    Currently based in Paris, I am working with Air Liquide to understand how thoughtful design scales in complex, real-world environments.
-                </p>
+      <div class="about-grid">
+    <div class="about-text">
+        <h2 class="proj-title-main">Bridging the gap between <em>industrial</em> and <em>digital</em> design.</h2>
+        <p class="proj-sub" style="margin-bottom: 20px;">
+            Hi, I'm Zachary. As a Product Design student at the University of Leeds, my focus lies in crafting experiences that look beautiful but function intuitively. My approach stems from deep user empathy, whether I'm sketching a physical product or wireframing a digital interface.
+        </p>
+        <p class="proj-sub" style="margin-bottom: 48px;">
+            Currently based in Paris, I am working with Air Liquide to understand how thoughtful design scales in complex, real-world environments.
+        </p>
+
+        <div class="about-meta">
+            <div class="meta-item">
+                <span class="meta-label">Capabilities</span>
+                <span class="meta-value">3D Modeling<br>UI/UX Design<br>Prototyping<br>Front & Back Dev</span>
             </div>
-            
-            <div class="about-meta">
-                <div class="meta-item">
-                    <span class="meta-label">Capabilities</span>
-                    <span class="meta-value">3D ModelingUI/UX Design<br>Prototyping<br>Front & Back Dev</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Tools</span>
-                    <span class="meta-value">SolidWorks & Sharp3d<br>Adobe Id, Xd, Ai, Ph<br>Blender & ProCreate<br>Github & Firebase</span>
-                </div>
+            <div class="meta-item">
+                <span class="meta-label">Tools</span>
+                <span class="meta-value">SolidWorks & Shapr3D<br>Adobe CC<br>Blender & ProCreate<br>Github & Firebase</span>
             </div>
         </div>
+    </div>
+    
+    <div class="about-images">
+        <div class="about-img-wrapper">
+            <img class="hideer" src="/IMG_3821-ezgif.com-optimize.gif" alt="gif">
+        </div>
+      
+       <div class="about-img-wrapper">
+            <img class="hideer" src="/IMG_4030%20(1).jpg" alt="Design Sketches">
+        </div>
+    </div>
+</div>
+ 
     </section>
 
     <footer>
