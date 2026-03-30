@@ -726,7 +726,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
     });
     </script>
 <script>
-    // --- MULTI-LINE OFF-SCREEN SWEEPING SQUIGGLE LOGIC ---
+    // --- SPATIALLY AWARE, STRICT AVOIDANCE SQUIGGLES ---
     document.addEventListener("DOMContentLoaded", () => {
         const canvasUnder = document.createElement('canvas');
         const canvasOver = document.createElement('canvas');
@@ -756,7 +756,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             });
 
             const styleOptions = {
-                strokeStyle: '#f34236', 
+                strokeStyle: '#f343375c', 
                 lineWidth: 26, 
                 lineCap: 'round',
                 lineJoin: 'round'
@@ -781,20 +781,51 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             const textElements = document.querySelectorAll('h1, h2, p, .nav-name, .meta-label, .meta-value, .hero-meta, .section-label, .proj-index, .proj-tags span, .footer-mono, .proj-footer-body, footer a');
             const textRects = getRects(textElements);
 
-            // Configure how many lines you want here
-            const numberOfLines = 3; 
-            
-            // Distribute starting points evenly across the screen width
-            const startXs = [width * 0.15, width * 0.5, width * 0.85];
+            const numberOfLines = 4; 
+
+            // --- THE SPATIAL GRID ---
+            // Stores the coordinates of all drawn paths to prevent overlap
+            const pathGrid = new Map();
+            const GRID_SIZE = 100;
+
+            function addFootprint(x, y) {
+                let bx = Math.floor(x / GRID_SIZE);
+                let by = Math.floor(y / GRID_SIZE);
+                let key = `${bx},${by}`;
+                if (!pathGrid.has(key)) pathGrid.set(key, []);
+                pathGrid.get(key).push({x, y});
+            }
+
+            // Checks if a coordinate is too close to an already drawn line
+            function isTooCloseToOtherLines(x, y, threshold = 75) {
+                let bx = Math.floor(x / GRID_SIZE);
+                let by = Math.floor(y / GRID_SIZE);
+                
+                // Check current and neighboring buckets for speed
+                for (let cx = bx - 1; cx <= bx + 1; cx++) {
+                    for (let cy = by - 1; cy <= by + 1; cy++) {
+                        let key = `${cx},${cy}`;
+                        if (pathGrid.has(key)) {
+                            let points = pathGrid.get(key);
+                            for (let i = 0; i < points.length; i++) {
+                                if (Math.hypot(x - points[i].x, y - points[i].y) < threshold) {
+                                    return true; 
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
 
             for (let i = 0; i < numberOfLines; i++) {
                 const mainPath = new Path2D();
                 const overPaths = [];
 
-                let curX = startXs[i % startXs.length]; // Start at left, center, or right
-                let curY = -100 - (Math.random() * 300); // Stagger the starting Y so they don't sync up
+                let curX = (width / numberOfLines) * i + (Math.random() * 100 - 50);
+                let curY = -100 - (Math.random() * 400); 
                 
-                let prevCp2X = curX + (Math.random() * 400 - 200); // Give them different initial angles
+                let prevCp2X = curX + (Math.random() * 200 - 100); 
                 let prevCp2Y = curY - 150; 
 
                 mainPath.moveTo(curX, curY);
@@ -802,39 +833,55 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
                 while (curY < height + 200) {
                     let bestSegment = null;
                     let minTextHits = Infinity;
-                    const MAX_RETRIES = 30; // Kept at 30 to balance performance with 3 lines
+                    let minLineHits = Infinity;
+                    const MAX_RETRIES = 50; // Bumped to 50 because the rules are much stricter now
+
+                    let dx = curX - prevCp2X;
+                    let dy = curY - prevCp2Y;
+                    let len = Math.hypot(dx, dy) || 1; 
+                    let dirX = dx / len;
+                    let dirY = dy / len;
 
                     for (let retry = 0; retry < MAX_RETRIES; retry++) {
                         let nextX, nextY;
 
-                        // THE ESCAPE HATCH: If it's trapped, throw it off-screen
-                        if (retry > 15) { 
-                            nextX = (curX < width / 2) ? (0 - Math.random() * 300 - 150) : (width + Math.random() * 300 + 150);
-                            nextY = curY + 250 + (Math.random() * 200); 
+                        // ESCAPE HATCH
+                        if (retry > 35) { 
+                            nextX = curX < width / 2 ? curX - 300 : curX + 300; 
+                            nextY = curY + 350 + (Math.random() * 200); 
                         } else {
-                            // Normal logic
-                            let targetX;
-                            if (curX < 0) {
-                                targetX = width * 0.6 + Math.random() * (width * 0.4); 
-                            } else if (curX > width) {
-                                targetX = width * 0.4 - Math.random() * (width * 0.4); 
+                            // MIXED MOVEMENT LOGIC
+                            let moveType = Math.random();
+                            if (moveType > 0.7) {
+                                if (curX < width / 2) {
+                                    nextX = width + 100 + (Math.random() * 300);
+                                } else {
+                                    nextX = 0 - 100 - (Math.random() * 300);
+                                }
+                                let horizontalTravel = Math.abs(nextX - curX);
+                                nextY = curY + 150 + (horizontalTravel * 0.12) + (Math.random() * 100);
+                            } else if (moveType > 0.3) {
+                                nextX = Math.random() * width;
+                                nextY = curY + 120 + (Math.random() * 150);
                             } else {
-                                targetX = (Math.random() > 0.3) ? (width - curX) : (Math.random() * width);
+                                nextX = curX + (Math.random() * 500 - 250); 
+                                nextX = Math.max(-50, Math.min(width + 50, nextX)); 
+                                nextY = curY + 80 + (Math.random() * 100); 
                             }
-                            
-                            nextX = targetX + (Math.random() * 400 - 200); 
-                            nextY = curY + 120 + (Math.random() * 180);
                         }
 
-                        // Smooth Momentum
-                        let cp1x = curX + (curX - prevCp2X) * 0.9; 
-                        let cp1y = curY + (curY - prevCp2Y) * 0.9;
+                        let dist = Math.hypot(nextX - curX, nextY - curY);
+                        let tension = 0.4; 
 
-                        let cp2x = nextX + (curX - nextX) * (0.3 + Math.random() * 0.3); 
-                        let cp2y = nextY - 100 - (Math.random() * 150);
+                        let cp1x = curX + dirX * (dist * tension);
+                        let cp1y = curY + dirY * (dist * tension);
+
+                        let cp2x = nextX - (nextX - curX) * 0.2; 
+                        let cp2y = nextY - (dist * tension); 
 
                         let textHits = 0;
                         let imgHits = 0;
+                        let lineHits = 0; // Tracks if it's tracing another line
 
                         for (let t = 0; t <= 1; t += 0.1) {
                             const x = Math.pow(1-t, 3)*curX + 3*Math.pow(1-t, 2)*t*cp1x + 3*(1-t)*Math.pow(t, 2)*cp2x + Math.pow(t, 3)*nextX;
@@ -843,25 +890,45 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
                             if (imgRects.some(r => x > r.left && x < r.right && y > r.top && y < r.bottom)) {
                                 imgHits++;
                             }
-                            if (x > 0 && x < width && textRects.some(r => x > r.left - 35 && x < r.right + 35 && y > r.top - 25 && y < r.bottom + 25)) {
+                            
+                            // 1. Text Collision Check
+                            if (x > 0 && x < width && textRects.some(r => x > r.left - 45 && x < r.right + 45 && y > r.top - 35 && y < r.bottom + 35)) {
                                 textHits++;
+                            }
+
+                            // 2. Line Overlap Check (Only bother checking if text isn't hit to save performance)
+                            if (textHits === 0 && isTooCloseToOtherLines(x, y, 75)) {
+                                lineHits++;
                             }
                         }
 
-                        let segment = { nextX, nextY, cp1x, cp1y, cp2x, cp2y, imgHits, textHits };
+                        let segment = { nextX, nextY, cp1x, cp1y, cp2x, cp2y, imgHits, textHits, lineHits };
 
-                        if (textHits <= 1) {
+                        // PERFECT PATH: 0 text hits, and minimal line overlaps (<= 3 allows them to cross sharply, but not travel parallel)
+                        if (textHits === 0 && lineHits <= 3) {
                             bestSegment = segment;
                             break; 
                         }
 
-                        if (textHits < minTextHits) {
-                            minTextHits = textHits;
+                        // Keep track of the safest path if we can't find a perfect one
+                        if (textHits === 0 && lineHits < minLineHits) {
+                            minLineHits = lineHits;
                             bestSegment = segment;
+                        } else if (textHits < minTextHits && !bestSegment) {
+                            minTextHits = textHits;
+                            bestSegment = segment; // Absolute fallback
                         }
                     }
 
+                    // Draw the chosen segment
                     mainPath.bezierCurveTo(bestSegment.cp1x, bestSegment.cp1y, bestSegment.cp2x, bestSegment.cp2y, bestSegment.nextX, bestSegment.nextY);
+
+                    // Record the footprint of the chosen segment so future lines avoid it
+                    for (let t = 0; t <= 1; t += 0.1) {
+                        const recX = Math.pow(1-t, 3)*curX + 3*Math.pow(1-t, 2)*t*bestSegment.cp1x + 3*(1-t)*Math.pow(t, 2)*bestSegment.cp2x + Math.pow(t, 3)*bestSegment.nextX;
+                        const recY = Math.pow(1-t, 3)*curY + 3*Math.pow(1-t, 2)*t*bestSegment.cp1y + 3*(1-t)*Math.pow(t, 2)*bestSegment.cp2y + Math.pow(t, 3)*bestSegment.nextY;
+                        addFootprint(recX, recY);
+                    }
 
                     if (bestSegment.imgHits > 0 && Math.random() < 0.10) {
                         const overSegment = new Path2D();
@@ -886,7 +953,8 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(drawSquiggles, 250);
+            // Clear the spatial grid on resize so lines can calculate fresh routes
+            drawSquiggles(); 
         });
     });
 </script>
