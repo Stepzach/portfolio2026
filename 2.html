@@ -36,7 +36,7 @@
 }
 
 body {
-    background: #f3453805;
+    background: #f345380d;
     color: var(--black);
     font-family: var(--font-main);
     font-weight: 300;
@@ -310,7 +310,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
         }
         .gallery-item {
             aspect-ratio: 16/12;
-            background: var(--light);
+           
             overflow: hidden;
         }
         .gallery-item img {
@@ -536,6 +536,29 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
        display: none !important;
     }
 }
+
+img {
+       opacity: 0.8 !important;
+    }
+    /* 1. Create the grain layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999; /* Ensures it sits on top of everything */
+  pointer-events: none; /* Allows clicking through the grain */
+  
+  /* 2. The Grain Texture (SVG data URI) */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  
+  /* 3. Transparency and Blending */
+  opacity: 0.1; /* Adjust this for subtle or intense grain */
+  contrast: 150%;
+  brightness: 100%;
+}
     </style>
 </head>
 <body>
@@ -557,7 +580,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
     <section class="hero">
         <div class="hero-text">
             <h1 class="hero-headline">
-                Product Design<br>Portfolio
+                <span style="color:black">Product Design</span><br>Portfolio
                 <em>2026</em><br>
                 
             </h1>
