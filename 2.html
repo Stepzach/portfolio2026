@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zachary Stephens | Product Designer</title>
+    <title>Zachary Stephens</title>
 
     <meta name="title" content="Zachary Stephens">
     <meta name="description" content="Product design student @ the University of Leeds">
@@ -30,9 +30,23 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html { 
-            scroll-behavior: smooth; 
-        }
+       html { 
+    scroll-behavior: smooth; 
+    background: var(--white); /* Moved here */
+}
+
+body {
+    background: transparent; /* Made transparent */
+    color: var(--black);
+    font-family: var(--font-main);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Add this new block anywhere in your <style> tag */
+h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
+    text-shadow: 0 0 40px var(--white), 0 0 15px var(--white);
+}
 
         :root {
             --black: #111;
@@ -46,13 +60,7 @@
             --font-sans: 'Manrope', sans-serif;
         }
 
-        body {
-            background: var(--white);
-            color: var(--black);
-            font-family: var(--font-main);
-            font-weight: 300;
-            -webkit-font-smoothing: antialiased;
-        }
+       
 
         .container { 
             padding: 0 52px;
@@ -86,7 +94,7 @@
             font-size: 15px;
             letter-spacing: 0.04em;
             font-weight: 400;
-           
+            
         }
          .nav-name img {
            margin-right:5px;
@@ -103,7 +111,7 @@
 
         /* ── HERO ── */
         .hero {
-            flex: 1;           
+            flex: 1;            
             min-height: 0;      
             display: grid;
             grid-template-columns: 1fr 380px;
@@ -538,7 +546,7 @@
             Zachary Stephens
         </span>
         <span class="footer-mono">
-           
+            
             <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-size:1rem">
                 CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i>
             </a>
@@ -548,9 +556,9 @@
     <section class="hero">
         <div class="hero-text">
             <h1 class="hero-headline">
-                Designing products<br>
-                <em>people actually</em><br>
-                want to use.
+                Product Design<br>Portfolio
+                <em>2026</em><br>
+                
             </h1>
             <div class="hero-meta">
                 <div class="meta-item">
@@ -613,26 +621,27 @@
        <div class="project" style="margin-top:0; padding-top:0; border-top:none;" >
             <div class="proj-index" >02</div>
             <div class="proj-body">
-                <h2 class="proj-title-main">Cardboard<em> Blueberry </em>Packaging</h2>
-                <p class="proj-sub">I redesigned the digital home for LSR, the UK’s best student station (2023 & 24). By blending their bold brand identity with intuitive UX, I created a platform that captures the raw energy of student radio.</p>
+                <h2 class="proj-title-main"><em>Service Design: </em>Library App</h2>
+                <p class="proj-sub"><b>The Problem: </b>Students rely on University Libraries, but often struggle to find available seating. Especially during peak hours and assessment periods.</p>
                 <div class="proj-tags">
-                    <span>UX & UI</span>
-                    <span>Live Chat</span>
-                      <span>Dynamic Schedule</span>
+                    <span>Research report</span>
+                    <span>Ideation</span>
+                      
                 </div>
             </div>
             
             <div class="proj-gallery">
                 <div class="gallery-track">
-                    <div class="gallery-item"><img src="/Lsr-mob.png" alt="Mobile Mockup LSR"></div>
-                    <div class="gallery-item"><img src="/New-Sch-LSR.png" alt="Laptop Mockup LSR"></div>
-                    <div class="gallery-item"><img src="/New-Mac-LSR.png" alt="LSR Homepage Mockup"></div>
+                    <div class="gallery-item"><img src="/Screenshot%202026-03-30%20at%2015.40.55.png" alt="Research board"></div>
+                    <div class="gallery-item"><img src="/Screenshot%202026-03-30%20at%2015.39.29.png" alt="Library"></div>
+                    <div class="gallery-item"><img src="/Screenshot%202026-03-30%20at%2015.39.59.png" alt="Floor plan"></div>
                 </div>
             </div>
             
             <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
             <div class="proj-footer-body">
-                <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
+                <a href="https://drive.google.com/file/d/14wrNN8WhUJga5HwJBUOw7JLY9CzRohOS/view?usp=sharing" class="proj-sub" target="_blank">Report (Part 1) </a>
+                 <a href="https://drive.google.com/file/d/16Y6ko60bonPNxt2vzZ7Yj9FwEgex7x-0/view?usp=sharing" class="proj-sub" target="_blank" style="margin-left:10px;"> Design (Part 2)</a>
             </div>
         </div>
     </section>
@@ -669,7 +678,7 @@
         <div class="about-img-wrapper">
             <img class="hideer" src="/IMG_3821-ezgif.com-optimize.gif" alt="gif">
         </div>
-      
+       
        <div class="about-img-wrapper">
             <img class="hideer" src="/IMG_4030%20(1).jpg" alt="Design Sketches">
         </div>
@@ -715,7 +724,171 @@
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
         revealElements.forEach(el => observer.observe(el));
     });
-</script>
+    </script>
+<script>
+    // --- MULTI-LINE OFF-SCREEN SWEEPING SQUIGGLE LOGIC ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const canvasUnder = document.createElement('canvas');
+        const canvasOver = document.createElement('canvas');
+        
+        [canvasUnder, canvasOver].forEach(canvas => {
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.pointerEvents = 'none'; 
+            document.body.style.overflowX = 'hidden'; 
+            document.body.appendChild(canvas);
+        });
 
+        canvasUnder.style.zIndex = '-1';   
+        canvasOver.style.zIndex = '9999';  
+
+        const ctxUnder = canvasUnder.getContext('2d');
+        const ctxOver = canvasOver.getContext('2d');
+
+        function drawSquiggles() {
+            const width = document.body.scrollWidth;
+            const height = document.body.scrollHeight;
+
+            [canvasUnder, canvasOver].forEach(canvas => {
+                canvas.width = width;
+                canvas.height = height;
+            });
+
+            const styleOptions = {
+                strokeStyle: '#f34236', 
+                lineWidth: 26, 
+                lineCap: 'round',
+                lineJoin: 'round'
+            }; 
+            
+            Object.assign(ctxUnder, styleOptions);
+            Object.assign(ctxOver, styleOptions);
+
+            const getRects = (nodes) => Array.from(nodes).map(n => {
+                const r = n.getBoundingClientRect();
+                return { 
+                    top: r.top + window.scrollY, 
+                    bottom: r.bottom + window.scrollY, 
+                    left: r.left + window.scrollX, 
+                    right: r.right + window.scrollX 
+                };
+            });
+            
+            const imgs = document.querySelectorAll('img');
+            const imgRects = getRects(imgs);
+
+            const textElements = document.querySelectorAll('h1, h2, p, .nav-name, .meta-label, .meta-value, .hero-meta, .section-label, .proj-index, .proj-tags span, .footer-mono, .proj-footer-body, footer a');
+            const textRects = getRects(textElements);
+
+            // Configure how many lines you want here
+            const numberOfLines = 3; 
+            
+            // Distribute starting points evenly across the screen width
+            const startXs = [width * 0.15, width * 0.5, width * 0.85];
+
+            for (let i = 0; i < numberOfLines; i++) {
+                const mainPath = new Path2D();
+                const overPaths = [];
+
+                let curX = startXs[i % startXs.length]; // Start at left, center, or right
+                let curY = -100 - (Math.random() * 300); // Stagger the starting Y so they don't sync up
+                
+                let prevCp2X = curX + (Math.random() * 400 - 200); // Give them different initial angles
+                let prevCp2Y = curY - 150; 
+
+                mainPath.moveTo(curX, curY);
+
+                while (curY < height + 200) {
+                    let bestSegment = null;
+                    let minTextHits = Infinity;
+                    const MAX_RETRIES = 30; // Kept at 30 to balance performance with 3 lines
+
+                    for (let retry = 0; retry < MAX_RETRIES; retry++) {
+                        let nextX, nextY;
+
+                        // THE ESCAPE HATCH: If it's trapped, throw it off-screen
+                        if (retry > 15) { 
+                            nextX = (curX < width / 2) ? (0 - Math.random() * 300 - 150) : (width + Math.random() * 300 + 150);
+                            nextY = curY + 250 + (Math.random() * 200); 
+                        } else {
+                            // Normal logic
+                            let targetX;
+                            if (curX < 0) {
+                                targetX = width * 0.6 + Math.random() * (width * 0.4); 
+                            } else if (curX > width) {
+                                targetX = width * 0.4 - Math.random() * (width * 0.4); 
+                            } else {
+                                targetX = (Math.random() > 0.3) ? (width - curX) : (Math.random() * width);
+                            }
+                            
+                            nextX = targetX + (Math.random() * 400 - 200); 
+                            nextY = curY + 120 + (Math.random() * 180);
+                        }
+
+                        // Smooth Momentum
+                        let cp1x = curX + (curX - prevCp2X) * 0.9; 
+                        let cp1y = curY + (curY - prevCp2Y) * 0.9;
+
+                        let cp2x = nextX + (curX - nextX) * (0.3 + Math.random() * 0.3); 
+                        let cp2y = nextY - 100 - (Math.random() * 150);
+
+                        let textHits = 0;
+                        let imgHits = 0;
+
+                        for (let t = 0; t <= 1; t += 0.1) {
+                            const x = Math.pow(1-t, 3)*curX + 3*Math.pow(1-t, 2)*t*cp1x + 3*(1-t)*Math.pow(t, 2)*cp2x + Math.pow(t, 3)*nextX;
+                            const y = Math.pow(1-t, 3)*curY + 3*Math.pow(1-t, 2)*t*cp1y + 3*(1-t)*Math.pow(t, 2)*cp2y + Math.pow(t, 3)*nextY;
+
+                            if (imgRects.some(r => x > r.left && x < r.right && y > r.top && y < r.bottom)) {
+                                imgHits++;
+                            }
+                            if (x > 0 && x < width && textRects.some(r => x > r.left - 35 && x < r.right + 35 && y > r.top - 25 && y < r.bottom + 25)) {
+                                textHits++;
+                            }
+                        }
+
+                        let segment = { nextX, nextY, cp1x, cp1y, cp2x, cp2y, imgHits, textHits };
+
+                        if (textHits <= 1) {
+                            bestSegment = segment;
+                            break; 
+                        }
+
+                        if (textHits < minTextHits) {
+                            minTextHits = textHits;
+                            bestSegment = segment;
+                        }
+                    }
+
+                    mainPath.bezierCurveTo(bestSegment.cp1x, bestSegment.cp1y, bestSegment.cp2x, bestSegment.cp2y, bestSegment.nextX, bestSegment.nextY);
+
+                    if (bestSegment.imgHits > 0 && Math.random() < 0.10) {
+                        const overSegment = new Path2D();
+                        overSegment.moveTo(curX, curY);
+                        overSegment.bezierCurveTo(bestSegment.cp1x, bestSegment.cp1y, bestSegment.cp2x, bestSegment.cp2y, bestSegment.nextX, bestSegment.nextY);
+                        overPaths.push(overSegment);
+                    }
+
+                    curX = bestSegment.nextX;
+                    curY = bestSegment.nextY; 
+                    prevCp2X = bestSegment.cp2x;
+                    prevCp2Y = bestSegment.cp2y;
+                }
+
+                ctxUnder.stroke(mainPath);
+                overPaths.forEach(p => ctxOver.stroke(p));
+            }
+        }
+
+        window.addEventListener('load', drawSquiggles);
+        
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(drawSquiggles, 250);
+        });
+    });
+</script>
 </body>
 </html>
