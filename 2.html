@@ -756,8 +756,8 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             });
 
             const styleOptions = {
-                strokeStyle: '#f343375c', 
-                lineWidth: 26, 
+                strokeStyle: '#ffecec', 
+                lineWidth: 8, 
                 lineCap: 'round',
                 lineJoin: 'round'
             }; 
@@ -797,7 +797,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             }
 
             // Checks if a coordinate is too close to an already drawn line
-            function isTooCloseToOtherLines(x, y, threshold = 75) {
+            function isTooCloseToOtherLines(x, y, threshold = 80) {
                 let bx = Math.floor(x / GRID_SIZE);
                 let by = Math.floor(y / GRID_SIZE);
                 
@@ -834,7 +834,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
                     let bestSegment = null;
                     let minTextHits = Infinity;
                     let minLineHits = Infinity;
-                    const MAX_RETRIES = 50; // Bumped to 50 because the rules are much stricter now
+                    const MAX_RETRIES = 20; 
 
                     let dx = curX - prevCp2X;
                     let dy = curY - prevCp2Y;
@@ -930,7 +930,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
                         addFootprint(recX, recY);
                     }
 
-                    if (bestSegment.imgHits > 0 && Math.random() < 0.10) {
+                    if (bestSegment.imgHits > 0 && Math.random() < 0.0) {
                         const overSegment = new Path2D();
                         overSegment.moveTo(curX, curY);
                         overSegment.bezierCurveTo(bestSegment.cp1x, bestSegment.cp1y, bestSegment.cp2x, bestSegment.cp2y, bestSegment.nextX, bestSegment.nextY);
