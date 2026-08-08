@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zach Stephens — Side Projects</title>
-    <meta name="description" content="A small hobby space where [Your Name] messes around with web design and game dev for fun.">
+    <title>Zachary Stephens</title>
+
+    <meta name="title" content="Zachary Stephens">
+    <meta name="description" content="Product design student @ the University of Leeds">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stephenszachary.com/">
+    <meta property="og:title" content="Zachary Stephens">
+    <meta property="og:description" content="Product design student @ the University of Leeds">
+    <meta property="twitter:url" content="https://stephenszachary.com/">
+    <meta property="twitter:title" content="Zachary Stephens">
+    <meta property="twitter:description" content="Product design student @ the University of Leeds">
+    
+    <link rel="canonical" href="https://stephenszachary.com/">
+    <link rel="icon" type="image/png" href="/ZSLOGO.png">
+    <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    
+  
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
@@ -48,10 +66,7 @@
             right: -20%;
             width: 80vw;
             height: 600px;
-            background: radial-gradient(ellipse at center, rgba(100, 150, 255, 0.1) 0%, rgba(150, 100, 255, 0.1) 35%, rgba(255, 255, 255, 0) 70%);
-            filter: blur(90px);
-            z-index: -1;
-            pointer-events: none;
+           opacity:0;
         }
 
         /* Container Layout */
@@ -153,36 +168,47 @@
         }
 
         /* Work Section (Grid) */
+       /* Work Section (Grid) */
         .projects-grid {
             border-top: 1px solid rgba(0,0,0,0.06);
             padding-top: 2rem;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 2rem;
+            /* Default to 1 column on mobile, updated to 3 on desktop later */
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin-bottom: 4rem;
         }
 
         .project-item {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.5rem;
             text-decoration: none;
             position: relative;
         }
 
         .project-card {
             background-color: var(--hover-bg);
-            border-radius: var(--card-radius);
-            height: 210px;
+            border-radius: 16px; /* Slightly tighter, more structured radius */
+            border: 1px solid var(--border-color);
+            height: 240px; /* Reduced height */
             position: relative;
             overflow: hidden;
-            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            padding: 1.5rem; /* Adds breathing room around the screenshot */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
             width: 100%;
-            border:solid 1px grey;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Prevents the screenshot from being cropped */
+            border-radius: 4px;
+           
+            transition: transform 0.4s ease;
         }
 
        .project-tag {
@@ -191,7 +217,7 @@
     left: 1.5rem;
     background: rgba(255, 255, 255, 0.95); /* Increased opacity so it doesn't wash out */
     backdrop-filter: blur(12px); /* Stronger blur for the remaining transparency */
-    border: 1px solid rgba(0, 0, 0, 0.08); /* Adds a crisp edge against light images */
+    
     padding: 0.35rem 0.9rem;
     border-radius: 50px;
     font-size: 0.75rem;
@@ -202,12 +228,7 @@
     pointer-events: none;
     z-index: 10;
 }
-        .project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+       
 .project-card::after {
     content: "";
     position: absolute;
@@ -215,7 +236,7 @@
     left: 0;
     width: 100%;
     height: 40%;
-    background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.05), transparent);
     pointer-events: none;
     z-index: 1;
 }
@@ -432,7 +453,7 @@
             font-weight: 300;
         }
 
-        /* Footer */
+       /* Footer */
         footer {
             padding: 4rem 2rem 2rem;
             background-color: var(--bg-color);
@@ -446,58 +467,17 @@
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
-            align-items: start;
-            margin-bottom: 5rem;
-        }
-
-        .footer-brand {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .footer-brand .logo-stamp {
-            margin-bottom: 0;
-            width: 32px;
-            height: 32px;
-            font-size: 0.8rem;
-        }
-
-        .footer-brand h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--text-color);
-            letter-spacing: -0.01em;
-        }
-
-        .footer-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            justify-self: center;
-        }
-
-        .footer-nav a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 300;
-            transition: color 0.3s ease;
-        }
-
-        .footer-nav a:hover {
-            color: var(--text-color);
+            margin-bottom: 5rem;
         }
 
         .footer-contact {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            justify-self: end;
-            text-align: right;
+            text-align: center;
         }
 
         .footer-contact p {
@@ -517,7 +497,7 @@
             display: flex;
             gap: 1.2rem;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
         }
 
         .social-icons a {
@@ -556,7 +536,7 @@
             transform: translateY(20px);
         }
 
-        /* Respect reduced-motion preferences: swap slides for a simple fade */
+        /* Respect reduced-motion preferences */
         @media (prefers-reduced-motion: reduce) {
             .reveal-element,
             .project-card,
@@ -632,7 +612,6 @@
                 transform: rotate(-3deg);
             }
 
-            /* Ambient wash becomes a soft full-width fade behind the header */
             .ambient-gradient {
                 position: absolute;
                 top: -5%;
@@ -675,7 +654,6 @@
                 mix-blend-mode: multiply;
             }
 
-            /* Tag + description are always visible on mobile, no hover needed */
             .project-tag {
                 position: static;
                 background: transparent !important;
@@ -689,10 +667,7 @@
                 color: #111;
                 margin-top: 0.5rem;
                 margin-bottom: 0.1rem;
-               border:solid white 0px !important;
-            }
-            
-       
+            }
 
             .project-description {
                 opacity: 1;
@@ -715,37 +690,16 @@
             footer { padding: 3rem 1.5rem 2rem; }
 
             .footer-content {
-                display: flex;
-                flex-direction: column;
-                gap: 3rem;
                 margin-bottom: 4rem;
-                text-align: left;
-            }
-
-            .footer-brand { order: 1; }
-            .footer-contact {
-                order: 2;
-                align-self: flex-start;
-                text-align: left;
-                justify-self: start;
-            }
-            .social-icons { justify-content: flex-start; }
-            .footer-nav {
-                order: 3;
-                align-self: flex-start;
-                gap: 1rem;
             }
         }
 
         @media (min-width: 901px) {
-            .footer-contact {
-                justify-self: end;
-                text-align: left;
+        
+         .projects-grid {
+                grid-template-columns: repeat(2, 1fr); /* 3 columns balances the layout */
             }
-            .social-icons {
-                align-items: center;
-                justify-content: flex-start;
-            }
+            
             .project-card {
                 height: 320px;
             }
@@ -767,6 +721,8 @@
                 padding-right: 2.5rem;
             }
         }
+        
+        
     </style>
 </head>
 <body>
@@ -775,9 +731,8 @@
 
     <div class="container">
         <header>
-            <!-- ✏️ Edit: your initials -->
-            <div class="logo-stamp reveal-element"><img src="https://stephenszachary.com/ZSLOGO.png" style="width:45px;"></div>
-
+           
+          
             <!-- ✏️ Edit: your name -->
             <h1 class="reveal-element">Zachary Stephens</h1>
 
