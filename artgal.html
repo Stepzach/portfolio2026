@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +7,7 @@
 
 <style>
   :root {
-    --paper: #fafafa;
+    --paper: #fff;
     --ink: #111;
     --muted: #777;
   }
@@ -56,7 +55,6 @@
 
   #header-nav.expanded {
     height: 200px;
-   
     mix-blend-mode: normal;
   }
 
@@ -77,7 +75,7 @@
       scale(var(--s, 1));
 
     opacity: var(--o, 0);
-    filter: blur(var(--b, 0px));
+    filter: blur(var(--b, 3px));
 
     transition:
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -97,6 +95,8 @@
   .nav-item.active {
     font-weight: bold;
     pointer-events: auto;
+
+
   }
 
   #header-nav.expanded .nav-item {
@@ -121,76 +121,6 @@
     pointer-events: auto;
   }
 
-  /* ------------------------------------------------
-     FAINT VISUAL SCROLLBAR
-
-     This is NOT a native scrollbar.
-     It does not affect scrolling behavior.
-     It simply mirrors navScrollOffset visually.
-  ------------------------------------------------ */
-
-  .nav-scrollbar {
-    position: absolute;
-    top: 12px;
-    right: 25%;
-
-    width: 3px;
-    height: 126px;
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition: opacity 0.4s ease;
-  }
-
-  #header-nav.expanded .nav-scrollbar {
-    opacity: 1;
-  }
-
-  /*
-    Hide the visual scrollbar when the
-    first or second navigation item is active.
-  */
-  #header-nav.expanded.hide-nav-scrollbar .nav-scrollbar {
-    opacity: 0;
-  }
-
-  /* Very faint track */
-
-  .nav-scrollbar::before {
-    content: "";
-    position: absolute;
-
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-  }
-
-  /* Moving thumb */
-
-  .nav-scrollbar-thumb {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 3px;
-    height: 32px;
-
-    background: rgba(0, 0, 0, 0.18);
-    border-radius: 10px;
-
-    transition: top 0.05s linear;
-  }
-
-  /* Slightly stronger while actively scrolling */
-
-  #header-nav.is-scrolling .nav-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.24);
-  }
-
-
   /* --- FULL SCREEN PANELS --- */
 
   .panel {
@@ -208,7 +138,6 @@
 
     padding: 80px 5%;
   }
-
 
   /* --- TYPOGRAPHY & CAPTIONS --- */
 
@@ -231,39 +160,60 @@
     padding-bottom: 2px;
   }
 
+ /* --- IMAGES & ARTWORK LAYOUT --- */
 
-  /* --- IMAGES --- */
+  .artwork-layout {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px; /* Changed from 40px to strictly 24px */
+    max-width: 100%;
+  }
 
   .image-wrapper {
-    height: 60vh;
-    width: 100%;
-
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 30px;
+    /* Removed max-height from here so it shrink-wraps the image tightly */
   }
 
   img {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    max-height: 60vh; /* Height constraint applied directly to the image */
+    width: auto;
+    height: auto;
+    display: block; /* Removes the invisible ~4px descender gap below inline images */
+    /* Removed object-fit: contain */
   }
 
+  /* Desktop: Text on Right (Image on Left) */
+  .artwork-layout.text-right {
+    flex-direction: row;
+    align-items: end;
+  }
+
+  /* Desktop: Text on Left (Image on Right) */
+  .artwork-layout.text-left {
+    flex-direction: row-reverse;
+    align-items: end;
+  }
 
   /* --- CAPTIONS --- */
 
   figcaption {
-    text-align: center;
-    font-size: 11px;
+    font-size: 13px;
+    width: 200px;
+    flex-shrink: 0;
+    
+  }
+
+  .artwork-layout.text-right figcaption {
+    text-align: left;
+  }
+
+  .artwork-layout.text-left figcaption {
+    text-align: right;
   }
 
   figcaption b {
     font-weight: bold;
-    text-transform: uppercase;
     letter-spacing: 0.02em;
   }
 
@@ -271,7 +221,6 @@
     font-weight: normal;
     color: var(--muted);
   }
-
 
   /* --- SCROLL INDICATOR --- */
 
@@ -289,22 +238,10 @@
   }
 
   @keyframes pulse {
-    0% {
-      opacity: 0.3;
-      transform: translateY(0);
-    }
-
-    50% {
-      opacity: 1;
-      transform: translateY(3px);
-    }
-
-    100% {
-      opacity: 0.3;
-      transform: translateY(0);
-    }
+    0% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(3px); }
+    100% { opacity: 0.3; transform: translateY(0); }
   }
-
 
   /* --- FIXED NAV --- */
 
@@ -328,1000 +265,481 @@
     color: var(--muted);
   }
 
+  /* --- DESKTOP NAVIGATION ROW (New Additions) --- */
+
+  @media (min-width: 761px) {
+    #header-nav {
+      height: 90px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      cursor: default;
+    }
+
+    .nav-item {
+      position: static;
+      transform: none !important;
+      opacity: 0.4 !important; /* Fade inactive items slightly */
+      filter: none !important;
+      pointer-events: auto !important;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-item:hover {
+      opacity: 0.8 !important;
+    }
+
+    .nav-item.active {
+      opacity: 1 !important;
+      font-weight: bold;
+
+    }
+  }
 
   /* --- MOBILE --- */
 
+ /* --- MOBILE --- */
+
   @media (max-width: 760px) {
-    .image-wrapper {
-      height: 50vh;
+    img {
+      max-height: 50vh; /* Moved height restriction directly to image */
+    }
+
+    /* Force vertical stack on mobile, aligning left edge of text with image */
+    .artwork-layout,
+    .artwork-layout.text-right,
+    .artwork-layout.text-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px; /* Uses gap to ensure exactly 24px vertically */
+    }
+
+    figcaption,
+    .artwork-layout.text-right figcaption,
+    .artwork-layout.text-left figcaption {
+      margin-top: 0; /* Removed in favor of flex gap */
+      text-align: left;
+      width: 100%;
     }
   }
-  @media (min-width: 400px) {
-    .nav-scrollbar {
-   
-    right: 30%;
-
-  
-  }
-  }
-  @media (min-width: 500px) {
-    .nav-scrollbar {
-   
-    right: 35%;
-
-  
-  }
-  }
-@media (min-width: 800px) {
-    .nav-scrollbar {
-   
-    right: 40%;
-
-  
-  }
-  }
-  @media (min-width: 1100px) {
-    .nav-scrollbar {
-   
-    right: 43%;
-
-  
-  }
-  }
-@media (min-width: 1430px) {
-    .nav-scrollbar {
-   
-    right: 44%;
-
-  
-  }
-  }
-
 </style>
-
 </head>
 
 <body>
 
-<header id="header-nav">
-
-  <!--
-    Visual-only scrollbar.
-    It does NOT control scrolling.
-  -->
-
-  <div class="nav-scrollbar" aria-hidden="true">
-    <div class="nav-scrollbar-thumb"></div>
-  </div>
-
-</header>
-
-<div class="fixed-nav">
-  <a href="#contact">Contact ↘</a>
-</div>
+<header id="header-nav"></header>
 
 <!-- ==================================================
      INTRO
 ================================================== -->
 
-<section class="panel" data-title="YOUR NAME / STUDIO">
-
+<section class="panel" data-title="YOUR NAME">
   <div class="intro-text">
-
-```
-<p>
-  <b>YOUR NAME</b><br>
-  <span>Artist & Publisher</span>
-</p>
-
-<p>
-  <span>Seoul Art Book Fair 2026</span><br>
-  <span>Booth XX</span>
-</p>
-```
-
+    <p>
+      <b>YOUR NAME</b><br>
+      <span>Artist & Publisher</span>
+    </p>
+    <p>
+      <span>Seoul Art Book Fair 2026</span><br>
+      <span>Booth XX</span>
+    </p>
   </div>
-
   <div class="scroll-indicator">
     Scroll down
   </div>
-
 </section>
 
 <!-- ==================================================
      ARTWORK 1
 ================================================== -->
 
-<section class="panel" data-title="TITLE OF WORK">
-
-  <div class="image-wrapper">
-
-```
-<img
-  src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1400&q=85"
-  alt="Artwork 1"
->
-```
-
+<section class="panel" data-title="PROJECT 1">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1400&q=85" alt="Artwork 1">
+    </div>
+    <figcaption>
+      <b>2026</b><br>
+      <span>Example description and accompanying text.</span>
+    </figcaption>
   </div>
-
-  <figcaption>
-    <b>TITLE OF WORK</b>
-    —
-    <span>Archival pigment print on cotton rag.</span>
-    <span>2026</span>
-  </figcaption>
-
 </section>
 
 <!-- ==================================================
      ARTIST BOOK
 ================================================== -->
 
-<section class="panel" data-title="ARTIST BOOK">
-
-  <div class="image-wrapper">
-
-```
-<img
-  src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=1100&q=85"
-  alt="Artwork 2"
->
-```
-
+<section class="panel" data-title="PROJECT 2">
+  <div class="artwork-layout text-left">
+    <div class="image-wrapper">
+      <img src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=1100&q=85" alt="Artwork 2">
+    </div>
+    <figcaption>
+      <b>2026</b><br>
+      <span>Example description and accompanying text.</span>
+    </figcaption>
   </div>
-
-  <figcaption>
-    <b>ARTIST BOOK</b>
-    —
-    <span>Silkscreen cover, 48 pages, perfect bound.</span>
-    <span>2025</span>
-  </figcaption>
-
 </section>
 
 <!-- ==================================================
      EDITION
 ================================================== -->
 
-<section class="panel" data-title="EDITION">
-
-  <div class="image-wrapper">
-
-```
-<img
-  src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=85"
-  alt="Artwork 3"
->
-```
-
+<section class="panel" data-title="PROJECT 3">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=85" alt="Artwork 3">
+    </div>
+    <figcaption>
+       <b>2026</b><br>
+      <span>Example description and accompanying text.</span>
+    </figcaption>
   </div>
-
-  <figcaption>
-    <b>EDITION</b>
-    —
-    <span>Limited run of 50, signed and numbered.</span>
-    <span>2025</span>
-  </figcaption>
-
 </section>
 
 <!-- ==================================================
      PRINTED OBJECT
 ================================================== -->
 
-<section class="panel" data-title="PRINTED OBJECT">
-
-  <div class="image-wrapper">
-
-```
-<img
-  src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1400&q=85"
-  alt="Artwork 4"
->
-```
-
+<section class="panel" data-title="PROJECT 4">
+  <div class="artwork-layout text-left">
+    <div class="image-wrapper">
+      <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1400&q=85" alt="Artwork 4">
+    </div>
+    <figcaption>
+       <b>2026</b><br>
+      <span>Example description and accompanying text.</span>
+    </figcaption>
   </div>
-
-  <figcaption>
-    <b>PRINTED OBJECT</b>
-    —
-    <span>Risograph fold-out poster series.</span>
-    <span>2024</span>
-  </figcaption>
-
 </section>
 
 <!-- ==================================================
      OBJECT
 ================================================== -->
 
-<section class="panel" data-title="OBJECT">
-
-  <div class="image-wrapper">
-
-```
-<img
-  src="https://images.unsplash.com/photo-1577083552431-6e5fd01988f5?auto=format&fit=crop&w=1100&q=85"
-  alt="Artwork 6"
->
-```
-
+<section class="panel" data-title="PROJECT 5">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01988f5?auto=format&fit=crop&w=1100&q=85" alt="Artwork 6">
+    </div>
+    <figcaption>
+      <b>2026</b><br>
+      <span>Example description and accompanying text.</span>
+    </figcaption>
   </div>
-
-  <figcaption>
-    <b>OBJECT</b>
-    —
-    <span>Mixed media sculpture and accompanying text.</span>
-    <span>2023</span>
-  </figcaption>
-
 </section>
 
 <!-- ==================================================
      CONTACT
 ================================================== -->
 
-<section
-  id="contact"
-  class="panel"
-  data-title="CONTACT & INQUIRIES"
->
-
+<section id="contact" class="panel" data-title="CONTACT">
   <div class="outro-text">
-
-```
-<p>
-  For commissions, collaborations, press,<br>
-  and post-fair orders, please get in touch.
-</p>
-
-<p>
-  <a href="mailto:hello@example.com">
-    hello@example.com
-  </a>
-</p>
-
-<p
-  style="
-    margin-top: 40px;
-    color: var(--muted);
-    font-size: 11px;
-  "
->
-  © 2026 YOUR NAME
-</p>
-```
-
+    <p>
+      For commissions, collaborations, press,<br>
+      and post-fair orders, please get in touch.
+    </p>
+    <p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </p>
+    <p style="margin-top: 40px; color: var(--muted); font-size: 11px;">
+      © 2026 YOUR NAME
+    </p>
   </div>
-
 </section>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
-
   const headerNav = document.getElementById("header-nav");
   const panels = document.querySelectorAll(".panel");
-
   const navItems = [];
-
-  /* Visual scrollbar thumb */
-  const navScrollbarThumb =
-    document.querySelector(".nav-scrollbar-thumb");
-
 
   let currentIndex = 0;
   let isExpanded = false;
 
-  /*
-    This is still the actual scrolling mechanism.
-    The visual scrollbar does not replace it.
-  */
+  /* This is still the actual scrolling mechanism inside the expanded nav. */
   let navScrollOffset = 0;
 
   let isDragging = false;
   let startY = 0;
   let hoverTimeout;
-
   let lastScrollTop = window.scrollY;
-
 
   /* ==================================================
      HOVER / SCROLL STATE
   ================================================== */
 
   function disableHoversDuringScroll() {
-
     headerNav.classList.add("is-scrolling");
-
     clearTimeout(hoverTimeout);
-
     hoverTimeout = setTimeout(() => {
-
       headerNav.classList.remove("is-scrolling");
-
     }, 150);
   }
-
 
   /* ==================================================
      CLAMP NAVIGATION SCROLL
   ================================================== */
 
   function clampNavScroll() {
-
     const itemSpacing = 24;
-
-    const maxOffset =
-      Math.max(
-        0,
-        (currentIndex - 1) * itemSpacing
-      );
-
+    const maxOffset = Math.max(0, (currentIndex - 1) * itemSpacing);
     const minOffset = 0;
-
 
     if (navScrollOffset > maxOffset) {
       navScrollOffset = maxOffset;
     }
-
     if (navScrollOffset < minOffset) {
       navScrollOffset = minOffset;
     }
   }
-
-
-  /* ==================================================
-     VISUAL SCROLLBAR
-     
-     IMPORTANT:
-     This only reflects navScrollOffset.
-     It never controls the scrolling itself.
-  ================================================== */
-
-  function updateScrollbar() {
-
-    if (!navScrollbarThumb) return;
-
-
-    /*
-      Hide the visual scrollbar when the first
-      or second navigation item is active.
-
-      currentIndex:
-      0 = first item
-      1 = second item
-      2+ = scrollbar allowed
-    */
-    if (isExpanded && currentIndex <= 1) {
-
-      headerNav.classList.add(
-        "hide-nav-scrollbar"
-      );
-
-    } else {
-
-      headerNav.classList.remove(
-        "hide-nav-scrollbar"
-      );
-
-    }
-
-
-    const itemSpacing = 24;
-
-    const totalItems = navItems.length;
-
-    /*
-      Same maximum offset used by the existing
-      custom navigation scrolling.
-    */
-
-    const maxOffset =
-      Math.max(
-        0,
-        (currentIndex - 1) * itemSpacing
-      );
-
-
-    /*
-      When there is no scrollable range,
-      keep the thumb at the top.
-    */
-
-    if (!isExpanded || maxOffset <= 0) {
-
-      navScrollbarThumb.style.top = "0px";
-
-      return;
-    }
-
-
-    /*
-      Dimensions of the visual scrollbar.
-    */
-
-    const trackHeight = 150;
-    const thumbHeight = 32;
-
-    const maxThumbTop =
-      trackHeight - thumbHeight;
-
-
-    /*
-      Convert the existing nav scroll position
-      into a 0–1 progress value.
-    */
-
-    const progress =
-      navScrollOffset / maxOffset;
-
-
-    /*
-      Keep progress safely between 0 and 1.
-    */
-
-    const clampedProgress =
-      Math.max(
-        0,
-        Math.min(1, progress)
-      );
-
-
-    /*
-      Move only the visual thumb.
-    */
-
-    navScrollbarThumb.style.top =
-      `${clampedProgress * maxThumbTop}px`;
-  }
-
 
   /* ==================================================
      COLLAPSE MENU
   ================================================== */
 
   function collapseMenu() {
-
     if (!isExpanded) return;
-
-
     isExpanded = false;
-
     headerNav.classList.remove("expanded");
-
     updateNav(true);
   }
-
 
   /* ==================================================
      BUILD HEADER NAVIGATION
   ================================================== */
 
   panels.forEach((panel, index) => {
-
     if (!panel.id) {
       panel.id = `panel-${index}`;
     }
 
-
-    const item =
-      document.createElement("div");
-
+    const item = document.createElement("div");
     item.classList.add("nav-item");
-
-    item.textContent =
-      panel.getAttribute("data-title");
-
+    item.textContent = panel.getAttribute("data-title");
 
     item.addEventListener("click", (e) => {
-
       e.stopPropagation();
-
-
       if (isDragging) return;
 
-
-      if (isExpanded) {
-
-        panel.scrollIntoView({
-          behavior: "smooth"
-        });
-
-        collapseMenu();
-
+      // On desktop (width > 760) OR if expanded on mobile, scroll immediately to section.
+      if (isExpanded || window.innerWidth > 760) {
+        panel.scrollIntoView({ behavior: "smooth" });
+        if (window.innerWidth <= 760) collapseMenu(); // Only collapse on mobile
       } else {
-
         navScrollOffset = 0;
-
         isExpanded = true;
-
         headerNav.classList.add("expanded");
-
         lastScrollTop = window.scrollY;
-
         updateNav(true);
       }
-
     });
 
-
     navItems.push(item);
-
     headerNav.appendChild(item);
-
   });
-
 
   /* ==================================================
      OUTER HEADER CLICK
   ================================================== */
 
   headerNav.addEventListener("click", () => {
-
-    if (isDragging) return;
-
+    if (isDragging || window.innerWidth > 760) return; // Prevent expanding logic on desktop
 
     if (!isExpanded) {
-
       navScrollOffset = 0;
-
       isExpanded = true;
-
       headerNav.classList.add("expanded");
-
       lastScrollTop = window.scrollY;
-
       updateNav(true);
-
     } else {
-
       collapseMenu();
-
     }
-
   });
-
 
   /* ==================================================
      DESKTOP WHEEL SCROLL
-     
-     UNCHANGED:
-     This is still custom scrolling using
-     navScrollOffset.
   ================================================== */
 
-  headerNav.addEventListener(
-    "wheel",
-    (e) => {
-
-      if (!isExpanded) return;
-
+  headerNav.addEventListener("wheel", (e) => {
+      if (!isExpanded || window.innerWidth > 760) return; // Disabled on desktop
       e.preventDefault();
-
       disableHoversDuringScroll();
-
-
       navScrollOffset -= e.deltaY;
-
-
       clampNavScroll();
-
       updateNav(false);
-
-    },
-    {
-      passive: false
-    }
+    }, { passive: false }
   );
-
 
   /* ==================================================
      MOBILE TOUCH START
   ================================================== */
 
-  headerNav.addEventListener(
-    "touchstart",
-    (e) => {
-
+  headerNav.addEventListener("touchstart", (e) => {
       if (!isExpanded) return;
-
-      startY =
-        e.touches[0].clientY;
-
+      startY = e.touches[0].clientY;
       isDragging = false;
-
-    },
-    {
-      passive: true
-    }
+    }, { passive: true }
   );
-
 
   /* ==================================================
      MOBILE TOUCH MOVE
-     
-     UNCHANGED:
-     Still uses navScrollOffset.
   ================================================== */
 
-  headerNav.addEventListener(
-    "touchmove",
-    (e) => {
-
+  headerNav.addEventListener("touchmove", (e) => {
       if (!isExpanded) return;
-
       e.preventDefault();
-
       disableHoversDuringScroll();
-
-
-      const y =
-        e.touches[0].clientY;
-
-
-      const deltaY =
-        y - startY;
-
+      const y = e.touches[0].clientY;
+      const deltaY = y - startY;
 
       if (Math.abs(deltaY) > 3) {
         isDragging = true;
       }
 
-
       navScrollOffset += deltaY;
-
       startY = y;
-
-
       clampNavScroll();
-
       updateNav(false);
-
-    },
-    {
-      passive: false
-    }
+    }, { passive: false }
   );
-
 
   /* ==================================================
      TOUCH END
   ================================================== */
 
-  headerNav.addEventListener(
-    "touchend",
-    () => {
-
+  headerNav.addEventListener("touchend", () => {
       setTimeout(() => {
-
         isDragging = false;
-
       }, 50);
-
     }
   );
-
 
   /* ==================================================
      UPDATE NAVIGATION POSITIONS
   ================================================== */
 
   function updateNav(useTransition = true) {
-
     const itemSpacing = 24;
-
-    const baseTy = 34;
-
+    const baseTy = 44; 
 
     navItems.forEach((item, i) => {
-
-      item.style.setProperty(
-        "--t-duration",
-        useTransition
-          ? "0.8s"
-          : "0s"
-      );
-
-
-      item.classList.toggle(
-        "active",
-        i === currentIndex
-      );
-
+      item.style.setProperty("--t-duration", useTransition ? "0.8s" : "0s");
+      item.classList.toggle("active", i === currentIndex);
 
       /* ----------------------------------------------
          EXPANDED
       ---------------------------------------------- */
-
       if (isExpanded) {
-
         item.style.setProperty(
           "--ty",
-          `${
-            baseTy +
-            ((i - currentIndex) * itemSpacing) +
-            navScrollOffset
-          }px`
+          `${baseTy + ((i - currentIndex) * itemSpacing) + navScrollOffset}px`
         );
-
-        item.style.setProperty(
-          "--s",
-          "1"
-        );
-
-        item.style.setProperty(
-          "--o",
-          i === currentIndex
-            ? "1"
-            : "0.4"
-        );
-
-        item.style.setProperty(
-          "--b",
-          "0px"
-        );
-
-
+        item.style.setProperty("--s", "1");
+        item.style.setProperty("--o", i === currentIndex ? "1" : "0.4");
+        item.style.setProperty("--b", "0px");
       }
-
       /* ----------------------------------------------
          COLLAPSED
       ---------------------------------------------- */
-
       else {
-
         if (i === currentIndex) {
-
-          item.style.setProperty(
-            "--ty",
-            "34px"
-          );
-
-          item.style.setProperty(
-            "--s",
-            "1"
-          );
-
-          item.style.setProperty(
-            "--o",
-            "1"
-          );
-
-          item.style.setProperty(
-            "--b",
-            "0px"
-          );
-
-
+          item.style.setProperty("--ty", "44px");
+          item.style.setProperty("--s", "1");
+          item.style.setProperty("--o", "1");
+          item.style.setProperty("--b", "0px");
         }
-
         else if (i === currentIndex - 1) {
-
-          item.style.setProperty(
-            "--ty",
-            "10px"
-          );
-
-          item.style.setProperty(
-            "--s",
-            "0.9"
-          );
-
-          item.style.setProperty(
-            "--o",
-            "0.35"
-          );
-
-          item.style.setProperty(
-            "--b",
-            "2px"
-          );
-
-
+          item.style.setProperty("--ty", "20px");
+          item.style.setProperty("--s", "0.9");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "2px");
         }
-
+        else if (i === currentIndex - 2) {
+          item.style.setProperty("--ty", "-4px");
+          item.style.setProperty("--s", "0.8");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "3px");
+        }
         else if (i === currentIndex + 1) {
-
-          item.style.setProperty(
-            "--ty",
-            "58px"
-          );
-
-          item.style.setProperty(
-            "--s",
-            "0.9"
-          );
-
-          item.style.setProperty(
-            "--o",
-            "0.35"
-          );
-
-          item.style.setProperty(
-            "--b",
-            "2px"
-          );
-
-
+          item.style.setProperty("--ty", "68px");
+          item.style.setProperty("--s", "0.9");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "2px");
         }
-
-        else if (i < currentIndex) {
-
-          item.style.setProperty(
-            "--ty",
-            "-16px"
-          );
-
-          item.style.setProperty(
-            "--s",
-            "0.8"
-          );
-
-          item.style.setProperty(
-            "--o",
-            "0"
-          );
-
-          item.style.setProperty(
-            "--b",
-            "4px"
-          );
-
-
+        else if (i < currentIndex - 2) {
+          item.style.setProperty("--ty", "-28px");
+          item.style.setProperty("--s", "0.8");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "4px");
         }
-
         else {
-
-          item.style.setProperty(
-            "--ty",
-            "84px"
-          );
-
-          item.style.setProperty(
-            "--s",
-            "0.8"
-          );
-
-          item.style.setProperty(
-            "--o",
-            "0"
-          );
-
-          item.style.setProperty(
-            "--b",
-            "4px"
-          );
+          item.style.setProperty("--ty", "92px");
+          item.style.setProperty("--s", "0.8");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "4px");
         }
       }
     });
-
-
-    /*
-      Update the visual scrollbar after the
-      navigation positions have been updated.
-    */
-
-    updateScrollbar();
   }
-
 
   /* ==================================================
      INTERSECTION OBSERVER
   ================================================== */
 
-  const observer =
-    new IntersectionObserver(
-      (entries) => {
-
-        let changed = false;
-
-
-        entries.forEach((entry) => {
-
-          if (entry.isIntersecting) {
-
-            currentIndex =
-              Array.from(panels)
-                .indexOf(entry.target);
-
-            changed = true;
-          }
-
-        });
-
-
-        if (changed) {
-
-          updateNav(true);
-
+  const observer = new IntersectionObserver((entries) => {
+      let changed = false;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          currentIndex = Array.from(panels).indexOf(entry.target);
+          changed = true;
         }
-
-      },
-      {
-        root: null,
-        threshold: 0.5
+      });
+      if (changed) {
+        updateNav(true);
       }
-    );
-
+    },
+    { root: null, threshold: 0.5 }
+  );
 
   panels.forEach((panel) => {
-
     observer.observe(panel);
-
   });
-
 
   /* ==================================================
      COLLAPSE HEADER WHEN PAGE ITSELF SCROLLS
   ================================================== */
 
-  document.addEventListener(
-    "wheel",
-    (e) => {
-
-      if (
-        isExpanded &&
-        !headerNav.contains(e.target)
-      ) {
-
+  document.addEventListener("wheel", (e) => {
+      if (isExpanded && !headerNav.contains(e.target)) {
         isExpanded = false;
-
-        headerNav.classList.remove(
-          "expanded"
-        );
-
+        headerNav.classList.remove("expanded");
         updateNav(true);
       }
-
-    },
-    {
-      passive: true
-    }
+    }, { passive: true }
   );
 
-
-  document.addEventListener(
-    "touchmove",
-    (e) => {
-
-      if (
-        isExpanded &&
-        !headerNav.contains(e.target)
-      ) {
-
+  document.addEventListener("touchmove", (e) => {
+      if (isExpanded && !headerNav.contains(e.target)) {
         isExpanded = false;
-
-        headerNav.classList.remove(
-          "expanded"
-        );
-
+        headerNav.classList.remove("expanded");
         updateNav(true);
       }
-
-    },
-    {
-      passive: true
-    }
+    }, { passive: true }
   );
-
 
   /* ==================================================
      RESIZE
   ================================================== */
 
-  window.addEventListener(
-    "resize",
-    () => {
-
+  window.addEventListener("resize", () => {
       if (isExpanded) {
         updateNav(false);
       }
-
     }
   );
-
 
   /* ==================================================
      INITIAL STATE
@@ -1330,7 +748,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateNav(true);
 
 });
-
 </script>
 
 </body>
