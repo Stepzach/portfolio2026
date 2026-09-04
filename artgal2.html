@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>portfolio</title>
 <meta name="description" content="Portfolio of Isabella Stephens — artist books, editions, and printed objects. London, 2026.">
-
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -131,7 +131,7 @@
     height: 260px;
   }
 
- 
+  
 
   .brand-mark {
     position: absolute;
@@ -154,6 +154,8 @@
 
   /* --- HAMBURGER MENU --- */
 
+
+
   .hamburger {
     position: absolute;
     right: 5%;
@@ -169,18 +171,20 @@
 
   .hamburger .line {
     width: 100%;
-    height: 1.5px;
+    height: 2px; /* Changed from 1.5px to a whole number */
     background: var(--ink);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     transform-origin: center;
   }
 
   #header-nav.expanded .hamburger .line-1 {
-    transform: translateY(4.25px) rotate(45deg);
+    /* Adjusted from 4.25px to 4px to match the new whole-pixel height */
+    transform: translateY(4px) rotate(45deg); 
   }
 
   #header-nav.expanded .hamburger .line-2 {
-    transform: translateY(-4.25px) rotate(-45deg);
+    /* Adjusted from -4.25px to -4px */
+    transform: translateY(-4px) rotate(-45deg);
   }
 
   .nav-item {
@@ -536,7 +540,7 @@
     .intro-meta {
       flex-direction: column;
       gap: 6px;
-      bottom: calc(36px + (100vh - 100svh));
+      bottom: 36px;
       align-items: center;
       text-align: center;
     }
