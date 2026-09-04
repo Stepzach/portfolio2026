@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jihoon Bae — Artist &amp; Publisher</title>
-<meta name="description" content="Portfolio of Jihoon Bae — artist books, editions, and printed objects. Seoul, 2026.">
+<title>portfolio</title>
+<meta name="description" content="Portfolio of Isabella Stephens — artist books, editions, and printed objects. London, 2026.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --paper: #f7f5f0;
-    --ink: #17140f;
+    --paper: white;
+    --ink: black;
     --taupe: #8a7d6b;
     --taupe-light: #cdc4b4;
-    --clay: #b5432c;
+    --clay: black;
     --rule: rgba(23, 20, 15, 0.14);
 
     --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-    --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --sans: "Newsreader", "Iowan Old Style", Georgia, serif;
   }
 
   * { box-sizing: border-box; }
@@ -70,11 +70,13 @@
     height: 90px;
     z-index: 50;
 
+   font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.01em;
     color: var(--ink);
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+ 
+    opacity: 0.92;
+
     cursor: pointer;
 
     transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -91,7 +93,7 @@
   }
 
   #header-nav.expanded {
-    height: 260px; /* Fits all items without full screen */
+    height: 260px;
   }
 
   #header-nav.expanded::before {
@@ -103,13 +105,18 @@
     left: 5%;
     top: 36px;
     font-family: var(--serif);
-    font-style: italic;
-    font-size: 14px;
+   
+    font-size: 16px;
     line-height: 1;
     letter-spacing: 0.01em;
     color: var(--ink);
     pointer-events: none;
     opacity: 0.92;
+    transition: opacity 0.5s ease;
+  }
+
+  .brand-mark.hidden {
+    opacity: 0;
   }
 
   /* --- HAMBURGER MENU --- */
@@ -204,10 +211,14 @@
 
   .intro-role {
     font-family: var(--sans);
-    font-size: 13px;
-    color: var(--taupe);
+    font-size: 14px;
+  
     margin-top: 18px;
     letter-spacing: 0.01em;
+    
+     color: var(--ink);
+  
+    opacity: 0.45;
   }
 
   .intro-meta {
@@ -218,8 +229,10 @@
     display: flex;
     justify-content: space-between;
     padding: 0 5%;
-    font-size: 11px;
-    color: var(--taupe);
+    font-size: 14px;
+     color: var(--ink);
+  
+    opacity: 0.45;
   }
 
   .intro-meta .right { text-align: right; }
@@ -267,6 +280,7 @@
   }
 
   .plate-number {
+    display: none;
     position: absolute;
     top: -28px;
     left: 0;
@@ -288,10 +302,10 @@
   .artwork-layout.text-left { flex-direction: row-reverse; }
 
   figcaption {
-    font-size: 13px;
+    font-size: 14px;
     width: 210px;
     flex-shrink: 0;
-    line-height: 1.6;
+    line-height: 1.4;
     padding-bottom: 4px;
   }
 
@@ -300,7 +314,7 @@
 
   figcaption .cap-title {
     font-family: var(--serif);
-    font-style: italic;
+   
     font-size: 16px;
     color: var(--ink);
     display: block;
@@ -308,9 +322,14 @@
   }
 
   figcaption .cap-meta {
-    color: var(--taupe);
+   
     display: block;
-    font-size: 12px;
+    font-size: 13px;
+    
+    letter-spacing: 0.01em;
+    color: var(--ink);
+ 
+    opacity: 0.45;
   }
 
   figcaption .cap-desc {
@@ -326,7 +345,7 @@
 
   .outro-text .cap-title {
     font-family: var(--serif);
-    font-style: italic;
+   
     font-size: 30px;
     display: block;
     margin-bottom: 20px;
@@ -335,7 +354,7 @@
   .outro-text p {
     margin: 0 0 20px 0;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.4;
     color: var(--ink);
     opacity: 0.85;
   }
@@ -431,22 +450,61 @@
 
   /* --- MOBILE --- */
 
+ /* --- MOBILE --- */
+
   @media (max-width: 760px) {
+    /* Hide the currently active nav item when the header is collapsed */
+    #header-nav:not(.expanded) .nav-item {
+      opacity: 0 !important;
+      visibility: hidden;
+    }
+
+    /* Keep the active item bold when the header is expanded */
+    #header-nav.expanded .nav-item.active {
+      font-weight: 500;
+    }
+    
     img { max-height: 46vh; }
 
+   /* Alternate alignments on mobile - fixed specificity */
+ /* Alternate alignments on mobile - fixed specificity */
     .artwork-layout,
     .artwork-layout.text-right,
     .artwork-layout.text-left {
       flex-direction: column;
-      align-items: flex-start;
       gap: 22px;
+      width: max-content; 
+      max-width: 100%;    
     }
 
-    figcaption,
-    .artwork-layout.text-right figcaption,
-    .artwork-layout.text-left figcaption {
+    /* Left-aligned variation */
+    .artwork-layout.text-right {
+      align-self: flex-start;  /* Pushes the entire block to the left side of the screen */
+      align-items: flex-start;
+    }
+    .artwork-layout.text-right figcaption {
       text-align: left;
-      width: 100%;
+      width: 0;
+      min-width: 100%;
+    }
+    .artwork-layout.text-right .plate-number {
+      left: 0;
+      right: auto;
+    }
+
+    /* Right-aligned variation */
+    .artwork-layout.text-left {
+      align-self: flex-end;   /* Pushes the entire block to the right side of the screen */
+      align-items: flex-end; 
+    }
+    .artwork-layout.text-left figcaption {
+      text-align: right;
+      width: 0;
+      min-width: 100%;
+    }
+    .artwork-layout.text-left .plate-number {
+      left: auto;
+      right: 0;
     }
 
     .plate-number { top: -22px; }
@@ -468,24 +526,21 @@
 <body>
 
 <header id="header-nav">
-  <span class="brand-mark">Jihoon Bae</span>
+  <span class="brand-mark hidden">Isabella Stephens</span>
   <div class="hamburger">
     <div class="line line-1"></div>
     <div class="line line-2"></div>
   </div>
 </header>
 
-
-
 <!-- ================= INTRO ================= -->
-<section class="panel intro-panel" data-title="Index">
-  <h1 class="intro-mark">Jihoon&nbsp;Bae</h1>
-  <p class="intro-role">Artist &amp; Publisher, working in print</p>
+<section class="panel intro-panel" data-title="Cover">
+  <h1 class="intro-mark">Isabella Stephens</h1>
+  <p class="intro-role">Art portfolio</p>
   <div class="intro-meta">
-    <span>Seoul, South Korea</span>
-    <span class="right">Est. 2019</span>
+    <span>London, U.K.</span>
+    <span class="right">2026</span>
   </div>
-  <div class="scroll-indicator">Scroll</div>
 </section>
 
 <!-- ================= PROJECT 1 ================= -->
@@ -571,20 +626,18 @@
       For commissions, collaborations, press enquiries,
       and post-fair orders, reach out directly.
     </p>
-    <a class="email-link" href="mailto:hello@jihoonbae.studio">hello@jihoonbae.studio</a>
-    <div class="social-row">
-      <a href="#" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" target="_blank" rel="noopener">Are.na</a>
-      <a href="#" target="_blank" rel="noopener">Newsletter</a>
-    </div>
+    <a class="email-link" href="mailto:hello@gmail.com">hello@gmail.com</a><br><br>
+      <a class="email-link" href="insta">@instagram_username</a>
+    
   </div>
-  <div class="colophon">© 2026 Jihoon Bae. All works reserved.</div>
+  <div class="colophon">© 2026 Isabella Stephens.</div>
 </section>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const headerNav = document.getElementById("header-nav");
   const panels = document.querySelectorAll(".panel");
+  const brandMark = document.querySelector(".brand-mark");
   const navItems = [];
 
   let currentIndex = 0;
@@ -680,7 +733,16 @@ document.addEventListener("DOMContentLoaded", () => {
           changed = true;
         }
       });
-      if (changed) updateNav(true);
+      if (changed) {
+        updateNav(true);
+        
+        // Hide the brand mark on the first panel, show it on the rest
+        if (currentIndex === 0) {
+          brandMark.classList.add("hidden");
+        } else {
+          brandMark.classList.remove("hidden");
+        }
+      }
     },
     { root: null, threshold: 0.5 }
   );
