@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jihoon Bae — Artist &amp; Publisher</title>
+<meta name="description" content="Portfolio of Jihoon Bae — artist books, editions, and printed objects. Seoul, 2026.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f7f5f0;
+    --ink: #17140f;
+    --taupe: #8a7d6b;
+    --taupe-light: #cdc4b4;
+    --clay: #b5432c;
+    --rule: rgba(23, 20, 15, 0.14);
+
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::-webkit-scrollbar { display: none; }
+
+  :focus-visible {
+    outline: 1.5px solid var(--clay);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* --- HEADER / NAV --- */
+
+  #header-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 50;
+
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+
+    transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #header-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--paper) 0%, var(--paper) 60%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+    transition: background 0.6s ease;
+  }
+
+  #header-nav.expanded {
+    height: 260px; /* Fits all items without full screen */
+  }
+
+  #header-nav.expanded::before {
+    background: var(--paper);
+  }
+
+  .brand-mark {
+    position: absolute;
+    left: 5%;
+    top: 36px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    pointer-events: none;
+    opacity: 0.92;
+  }
+
+  /* --- HAMBURGER MENU --- */
+
+  .hamburger {
+    position: absolute;
+    right: 5%;
+    top: 38px;
+    width: 20px;
+    height: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 60;
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    transform-origin: center;
+  }
+
+  #header-nav.expanded .hamburger .line-1 {
+    transform: translateY(4.25px) rotate(45deg);
+  }
+
+  #header-nav.expanded .hamburger .line-2 {
+    transform: translateY(-4.25px) rotate(-45deg);
+  }
+
+  .nav-item {
+    position: absolute;
+    left: 50%;
+    top: 0;
+
+    transform: translate(-50%, var(--ty, 24px)) scale(var(--s, 1));
+    opacity: var(--o, 0);
+    filter: blur(var(--b, 3px));
+
+    transition:
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.8s ease,
+      filter 0.8s ease;
+
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .nav-item.active { color: var(--clay); }
+  #header-nav.expanded .nav-item { pointer-events: auto; }
+  #header-nav.expanded .nav-item:hover {
+    opacity: 1 !important;
+    transition:
+      transform var(--t-duration, 0.8s) cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.2s ease,
+      filter 0.8s ease;
+  }
+  #header-nav:not(.expanded) .nav-item { pointer-events: auto; }
+
+  /* --- PANELS --- */
+
+  .panel {
+    height: 100vh;
+    height: 100svh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 80px 5%;
+  }
+
+  /* --- INTRO --- */
+
+  .intro-panel { align-items: center; }
+
+  .intro-mark {
+    font-family: var(--serif);
+    font-size: clamp(40px, 9vw, 84px);
+    font-weight: 400;
+    line-height: 0.98;
+    text-align: center;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .intro-role {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--taupe);
+    margin-top: 18px;
+    letter-spacing: 0.01em;
+  }
+
+  .intro-meta {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    font-size: 11px;
+    color: var(--taupe);
+  }
+
+  .intro-meta .right { text-align: right; }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--taupe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: pulse 2.2s infinite;
+  }
+
+  .scroll-indicator::after {
+    content: "";
+    width: 1px;
+    height: 22px;
+    background: var(--taupe-light);
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.35; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.35; }
+  }
+
+  /* --- ARTWORK LAYOUT --- */
+
+  .artwork-layout {
+    display: inline-flex;
+    align-items: end;
+    gap: 40px;
+    max-width: 92%;
+  }
+
+  .image-wrapper {
+    display: flex;
+    position: relative;
+  }
+
+  .plate-number {
+    position: absolute;
+    top: -28px;
+    left: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--taupe);
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 58vh;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  .artwork-layout.text-right { flex-direction: row; }
+  .artwork-layout.text-left { flex-direction: row-reverse; }
+
+  figcaption {
+    font-size: 13px;
+    width: 210px;
+    flex-shrink: 0;
+    line-height: 1.6;
+    padding-bottom: 4px;
+  }
+
+  .artwork-layout.text-right figcaption { text-align: left; }
+  .artwork-layout.text-left figcaption { text-align: right; }
+
+  figcaption .cap-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  figcaption .cap-meta {
+    color: var(--taupe);
+    display: block;
+    font-size: 12px;
+  }
+
+  figcaption .cap-desc {
+    color: var(--ink);
+    display: block;
+    margin-top: 10px;
+    opacity: 0.82;
+  }
+
+  /* --- OUTRO / CONTACT --- */
+
+  .outro-text { text-align: center; max-width: 420px; }
+
+  .outro-text .cap-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 30px;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .outro-text p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+
+  a.email-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  a.email-link:hover {
+    color: var(--clay);
+    border-color: var(--clay);
+  }
+
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 34px;
+    font-size: 11px;
+  }
+
+  .social-row a {
+    color: var(--taupe);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .social-row a:hover {
+    color: var(--ink);
+    border-color: var(--taupe-light);
+  }
+
+  .colophon {
+    position: absolute;
+    bottom: 32px;
+    font-size: 10px;
+    color: var(--taupe-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* --- FIXED CORNER --- */
+
+  .fixed-corner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    font-size: 10px;
+    color: var(--taupe);
+    z-index: 50;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+  }
+
+  /* --- DESKTOP NAV ROW --- */
+
+  @media (min-width: 761px) {
+    #header-nav {
+      height: 90px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      cursor: default;
+    }
+
+    .hamburger { display: none; }
+
+    .nav-item {
+      position: static;
+      transform: none !important;
+      opacity: 0.45 !important;
+      filter: none !important;
+      pointer-events: auto !important;
+      cursor: pointer;
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-item:hover { opacity: 0.8 !important; }
+
+    .nav-item.active {
+      opacity: 1 !important;
+    }
+  }
+
+  /* --- MOBILE --- */
+
+  @media (max-width: 760px) {
+    img { max-height: 46vh; }
+
+    .artwork-layout,
+    .artwork-layout.text-right,
+    .artwork-layout.text-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+    }
+
+    figcaption,
+    .artwork-layout.text-right figcaption,
+    .artwork-layout.text-left figcaption {
+      text-align: left;
+      width: 100%;
+    }
+
+    .plate-number { top: -22px; }
+
+    .intro-meta {
+      flex-direction: column;
+      gap: 6px;
+      bottom: 78px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .intro-meta .right { text-align: center; }
+    .fixed-corner { display: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<header id="header-nav">
+  <span class="brand-mark">Jihoon Bae</span>
+  <div class="hamburger">
+    <div class="line line-1"></div>
+    <div class="line line-2"></div>
+  </div>
+</header>
+
+
+
+<!-- ================= INTRO ================= -->
+<section class="panel intro-panel" data-title="Index">
+  <h1 class="intro-mark">Jihoon&nbsp;Bae</h1>
+  <p class="intro-role">Artist &amp; Publisher, working in print</p>
+  <div class="intro-meta">
+    <span>Seoul, South Korea</span>
+    <span class="right">Est. 2019</span>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</section>
+
+<!-- ================= PROJECT 1 ================= -->
+<section class="panel" data-title="Tideline">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <span class="plate-number">Plate I</span>
+      <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1400&q=85" alt="Riso-printed publication">
+    </div>
+    <figcaption>
+      <span class="cap-title">Tideline</span>
+      <span class="cap-meta">Risograph, 2026 · Edition of 150</span>
+      <span class="cap-desc">A folded publication tracing the coastline north of Incheon, printed in two passes of blue over uncoated stock.</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ================= PROJECT 2 ================= -->
+<section class="panel" data-title="Ledger">
+  <div class="artwork-layout text-left">
+    <div class="image-wrapper">
+      <span class="plate-number">Plate II</span>
+      <img src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=1100&q=85" alt="Stack of hand-bound books">
+    </div>
+    <figcaption>
+      <span class="cap-title">Ledger</span>
+      <span class="cap-meta">Thread-bound artist book, 2026 · Edition of 60</span>
+      <span class="cap-desc">Hand-sewn signatures collecting a year of studio notes, bound in undyed linen.</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ================= PROJECT 3 ================= -->
+<section class="panel" data-title="Interval">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <span class="plate-number">Plate III</span>
+      <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=85" alt="Detail of a printed page">
+    </div>
+    <figcaption>
+      <span class="cap-title">Interval</span>
+      <span class="cap-meta">Screenprint on kozo paper, 2025 · Edition of 30</span>
+      <span class="cap-desc">A study in overlapping forms, hand-pulled in three layers on translucent kozo.</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ================= PROJECT 4 ================= -->
+<section class="panel" data-title="Between Editions">
+  <div class="artwork-layout text-left">
+    <div class="image-wrapper">
+      <span class="plate-number">Plate IV</span>
+      <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1400&q=85" alt="Loose printed sheets">
+    </div>
+    <figcaption>
+      <span class="cap-title">Between Editions</span>
+      <span class="cap-meta">Proof sheets, 2025 · Unique states</span>
+      <span class="cap-desc">Working proofs from the studio archive, kept as records of a printing process rather than a finished object.</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ================= PROJECT 5 ================= -->
+<section class="panel" data-title="Low Tide Almanac">
+  <div class="artwork-layout text-right">
+    <div class="image-wrapper">
+      <span class="plate-number">Plate V</span>
+      <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=85" alt="Open book spread">
+    </div>
+    <figcaption>
+      <span class="cap-title">Low Tide Almanac</span>
+      <span class="cap-meta">Offset publication, 2024 · Edition of 500</span>
+      <span class="cap-desc">A pocket almanac of tide tables and marginal drawings, produced with a small offset press in Paju.</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="panel" data-title="Contact">
+  <div class="outro-text">
+    <span class="cap-title">Get in touch</span>
+    <p>
+      For commissions, collaborations, press enquiries,
+      and post-fair orders, reach out directly.
+    </p>
+    <a class="email-link" href="mailto:hello@jihoonbae.studio">hello@jihoonbae.studio</a>
+    <div class="social-row">
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">Are.na</a>
+      <a href="#" target="_blank" rel="noopener">Newsletter</a>
+    </div>
+  </div>
+  <div class="colophon">© 2026 Jihoon Bae. All works reserved.</div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const headerNav = document.getElementById("header-nav");
+  const panels = document.querySelectorAll(".panel");
+  const navItems = [];
+
+  let currentIndex = 0;
+  let isExpanded = false;
+
+  function collapseMenu() {
+    if (!isExpanded) return;
+    isExpanded = false;
+    headerNav.classList.remove("expanded");
+    updateNav(true);
+  }
+
+  panels.forEach((panel, index) => {
+    if (!panel.id) panel.id = `panel-${index}`;
+
+    const item = document.createElement("div");
+    item.classList.add("nav-item");
+    item.textContent = panel.getAttribute("data-title");
+
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      if (isExpanded || window.innerWidth > 760) {
+        panel.scrollIntoView({ behavior: "smooth" });
+        if (window.innerWidth <= 760) collapseMenu();
+      } else {
+        isExpanded = true;
+        headerNav.classList.add("expanded");
+        updateNav(true);
+      }
+    });
+
+    navItems.push(item);
+    headerNav.appendChild(item);
+  });
+
+  headerNav.addEventListener("click", () => {
+    if (window.innerWidth > 760) return;
+
+    if (!isExpanded) {
+      isExpanded = true;
+      headerNav.classList.add("expanded");
+      updateNav(true);
+    } else {
+      collapseMenu();
+    }
+  });
+
+  function updateNav(useTransition = true) {
+    const itemSpacing = 32;
+    // 37px centers precisely with the absolute layout of the brand-mark and hamburger
+    const baseTy = 37; 
+    
+    navItems.forEach((item, i) => {
+      item.style.setProperty("--t-duration", useTransition ? "0.8s" : "0s");
+      item.classList.toggle("active", i === currentIndex);
+
+      if (isExpanded) {
+        // Dropdown expands to show the full list perfectly sequenced
+        let ty = baseTy + (i * itemSpacing);
+        item.style.setProperty("--ty", `${ty}px`);
+        item.style.setProperty("--s", "1");
+        item.style.setProperty("--o", i === currentIndex ? "1" : "0.5");
+        item.style.setProperty("--b", "0px");
+        
+      } else {
+        // Collapsed state: Only the current item is precisely aligned in the middle
+        if (i === currentIndex) {
+          item.style.setProperty("--ty", `${baseTy}px`);
+          item.style.setProperty("--s", "1");
+          item.style.setProperty("--o", "1");
+          item.style.setProperty("--b", "0px");
+        } else if (i < currentIndex) {
+          item.style.setProperty("--ty", `${baseTy - 18}px`);
+          item.style.setProperty("--s", "0.9");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "2px");
+        } else {
+          item.style.setProperty("--ty", `${baseTy + 18}px`);
+          item.style.setProperty("--s", "0.9");
+          item.style.setProperty("--o", "0");
+          item.style.setProperty("--b", "2px");
+        }
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+      let changed = false;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          currentIndex = Array.from(panels).indexOf(entry.target);
+          changed = true;
+        }
+      });
+      if (changed) updateNav(true);
+    },
+    { root: null, threshold: 0.5 }
+  );
+
+  panels.forEach((panel) => observer.observe(panel));
+
+  // Auto-collapse when scrolling away
+  document.addEventListener("wheel", (e) => {
+      if (isExpanded && !headerNav.contains(e.target)) {
+        collapseMenu();
+      }
+    }, { passive: true }
+  );
+
+  document.addEventListener("touchmove", (e) => {
+      if (isExpanded && !headerNav.contains(e.target)) {
+        collapseMenu();
+      }
+    }, { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    if (isExpanded) updateNav(false);
+  });
+
+  updateNav(true);
+});
+</script>
+
+</body>
+</html>
