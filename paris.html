@@ -52,7 +52,7 @@
     border-bottom:none;
     position:fixed;
     transform: translateY(0);
-    opacity: 1;
+    opacity: 0;
     transition: transform 0.35s ease, opacity 0.35s ease, box-shadow .3s ease;
   }
  header.nav::after{
@@ -69,6 +69,7 @@
 }
   header.nav.is-scrolled{
     box-shadow: 0 4px 18px rgba(35,28,82,0.06);
+      opacity: 1;
   }
 
   .nav-inner{
@@ -88,7 +89,7 @@
   }
 
   .nav-links{
-    display:flex; align-items:center; gap:clamp(10px,2vw,26px);
+    display:flex; align-items:center; gap:clamp(12px,2vw,28px);
     flex:1;
     justify-content:center;
     overflow-x:auto;
@@ -98,12 +99,13 @@
   .nav-links::-webkit-scrollbar{display:none;}
 
   .nav-link{
-    font-size:16px;
+    font-size:19px;
     color: var(--ink-soft);
     white-space:nowrap;
-    padding:6px 2px;
+    padding:0px 2px;
     position:relative;
     transition: color .2s ease;
+        height: 28px;
   }
   .nav-link::after{
   content:"";
@@ -212,46 +214,46 @@
 
   /* ---------- SECTIONS ---------- */
   section.category{
-    scroll-margin-top: 56px;
+    scroll-margin-top: 136px;
     max-width:var(--wrap);
     margin-left:auto;
     margin-right:auto;
   }
   
    .section-heading{
-    display:flex; align-items:baseline; gap:16px;
+    display:flex; align-items:baseline; 
    background: #7eb5c766;
     padding: 0 20px;
-    padding-top:10px;
+    max-width:100%;
+    width:100%;
+  
         margin-top:-10px;
-    max-width: var(--wrap);
-    
+       justify-content: center;
+        flex-direction: column;
+            align-items: center;
     margin-left:auto; margin-right:auto;
    
   }
   
   
   .section-heading .num{
-    font-family: "Emilys Candy", serif !important;
-    font-size: 22px;
-    color: #4b65df;
-   
-    opacity:0.55;
+    display:none;
   }
   .section-heading h2{
-    font-family: "Emilys Candy", serif !important;
+     font-family:var(--font);
     font-weight:400;
-    font-size: clamp(34px, 4.5vw, 48px);
+    font-size: clamp(30px, 4.1vw, 44px);
     color: #1b163d;
     filter: url('#outline-small');
     letter-spacing: 0.5px;
   }
   .section-heading .fr-label{
     font-family:var(--font);
-    font-size:16px;
+    font-size:18px;
     color: var(--ink-soft);
     opacity:0.7;
     padding-bottom:6px;
+    margin-top:-14px;
   }
 
 
@@ -584,14 +586,24 @@
    @media (max-width:640px){
     :root{--nav-h:52px;}
     .nav-brand{ display:none; }
-    .nav-links{ justify-content:flex-start; }
+
     .hero{padding-top:calc(var(--nav-h) + 40px); padding-bottom:40px;}
     .hero-sub p{ font-size:20px; }
     .overlay-list a{ padding:14px 2px; }
     .overlay-list .link-main{ font-size: clamp(22px, 7vw, 28px); }
   }
 
- 
+    @media (min-width:880px){
+   section.category{
+    scroll-margin-top: 150px;
+    }
+    }
+    
+      @media (min-width:1480px){
+   section.category{
+    scroll-margin-top: 158px;
+    }
+    }
 </style>
 </head>
 <body>
@@ -614,7 +626,7 @@
   
 <header class="nav">
   <div class="nav-inner">
-    <span class="nav-brand">Guide de Paris</span>
+
     <nav class="nav-links" id="navLinks">
       <a href="#eat" class="nav-link">Eat</a>
       <a href="#drink" class="nav-link">Drink</a>
@@ -648,13 +660,14 @@
   </section>
 
   <!-- ================= EAT ================= -->
-  <section class="category" id="eat" data-label="Eat">
-   <div class="section-heading"><h2>Eat</h2><span class="fr-label">Restaurants & Cafés</span></div>
+    <div class="section-heading"><h2>Eat</h2><span class="fr-label">Restaurants & Cafés</span></div>
     <div class="line-container" style="height:20px; margin-top:-10px;">
           <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
             <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
           </svg>
         </div>
+  <section class="category" id="eat" data-label="Eat">
+ 
     <div class="wrap">
       <div class="grid">
         <article class="card span-7">
@@ -842,8 +855,73 @@
             </div>
           </div>
         </article>
+
+          <div class="line-container">
+          <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
+            <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
+          </svg>
+        </div>
         
-       
+         <article class="card span-7">
+          <div class="card-top">
+            <div class="card-top-left">
+              <div class="card-meta"><span class="tag">Italian</span></div>
+              <h3 class="card-title">Carboni's</h3>
+            </div>
+            <div class="card-media">
+              <img src="https://ik.imagekit.io/53bnrahwc/FDB29E17-8879-45FF-B693-5A46822F1B36_1_105_c%20(1).webp" alt="Carboni's restaurant">
+            </div>
+          </div>
+          <p class="card-desc">Chic with an intimate vibe. Nice atmosphere, was busy and we didn't book but we were able to sit at the bar to eat.</p>
+          <div class="card-footer">
+            <div class="footer-row">
+              <div class="footer-img"><img src="https://ik.imagekit.io/53bnrahwc/IMG_7114.jpg" alt=""></div>
+              <p class="footer-text">Super tasty. The starters were soo good but forgot to take pics OOPS</p>
+            </div>
+            <div class="footer-address">
+              <div class="street-row">
+                <span>45 Rue de Poitou</span>
+                <span class="arr-badge">3<sup>ème</sup> <span class="arr-long">Arrondissement</span><span class="arr-short">Arr</span></span>
+              </div>
+              <div class="metro-row">METRO: Filles du Calvaire</div>
+            </div>
+          </div>
+        </article>
+        
+        <div class="line-container">
+          <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
+            <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
+          </svg>
+        </div>
+
+        <article class="card span-5">
+          <div class="card-top">
+            <div class="card-top-left">
+              <div class="card-meta"><span class="tag">Pizza</span></div>
+              <h3 class="card-title">Maker Jeuneurs</h3>
+            </div>
+            <div class="card-media">
+              <img src="https://ik.imagekit.io/53bnrahwc/Screenshot%202026-09-09%20at%2022.41.10.png" alt="Pizza">
+            </div>
+          </div>
+          <p class="card-desc">Cool pizza place. You can build your own pizza, and they have sooooo many options; good prices too!</p>
+          <div class="card-footer">
+            <div class="footer-row">
+              <div class="footer-img"><img src="https://ik.imagekit.io/53bnrahwc/IMG_6966.jpg" alt=""></div>
+              <p class="footer-text">Staff is friendly and they genuinely let you choose any combination: 50/50 base , unlimited topings...etc</p>
+            </div>
+            <div class="footer-address">
+              <div class="street-row">
+                <span>32 Rue des Jeuneurs</span>
+                <span class="arr-badge">02<sup>ème</sup> <span class="arr-long">Arrondissement</span><span class="arr-short">Arr</span></span>
+              </div>
+              <div class="metro-row">METRO: Grands Boulevards</div>
+            </div>
+          </div>
+        </article>
+        
+
+        
       </div>
     </div>
   </section>
@@ -852,14 +930,15 @@
             <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
           </svg>
         </div>
-  <!-- ================= DRINK ================= -->
-  <section class="category" id="drink" data-label="Drink">
-    <div class="section-heading"><span class="num">02</span><h2>Drink</h2><span class="fr-label">Bars & Pubs</span></div>
+          <div class="section-heading"><span class="num">02</span><h2>Drink</h2><span class="fr-label">Bars & Pubs</span></div>
     <div class="line-container" style="height:20px; margin-top:-10px;">
       <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
         <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
       </svg>
     </div>
+  <!-- ================= DRINK ================= -->
+  <section class="category" id="drink" data-label="Drink">
+  
     <div class="wrap">
       <div class="grid">
     
@@ -1124,25 +1203,25 @@
          <article class="card span-7">
           <div class="card-top">
             <div class="card-top-left">
-              <div class="card-meta"><span class="tag">Cheap bar</span></div>
-              <h3 class="card-title">Le Royal Custine</h3>
+              <div class="card-meta"><span class="tag">Chess bar</span></div>
+              <h3 class="card-title">Blitz Society</h3>
             </div>
             <div class="card-media">
-              <img src="https://ik.imagekit.io/53bnrahwc/images.jpeg" alt="Le Phalsbourg restaurant">
+              <img src="https://ik.imagekit.io/53bnrahwc/images%20(4).jpg" alt="chess">
             </div>
           </div>
-          <p class="card-desc">Nice little neighborhood bar with terrace, good atmosphere and cheap drinks</p>
+          <p class="card-desc">Not a typical bar but a really really cool space and decor. They run chess nights and card game nights. Nice drinks and food (but a bit expensive)</p>
           <div class="card-footer">
             <div class="footer-row">
-              <div class="footer-img"><img src="https://lh3.googleusercontent.com/p/AF1QipPm6Cx3uOe70W7JgkqbWQJyv3NNBYrHlJXaXHy_=s1600-w640" alt=""></div>
-              <p class="footer-text">I recommend for pre-drinks, only issue is its a bit far away</p>
+              <div class="footer-img"><img src="https://ik.imagekit.io/53bnrahwc/IMG_7328.jpg" alt=""></div>
+              <p class="footer-text">They do jazz + chess events! Check their schedule for that because it was sooo cool.</p>
             </div>
             <div class="footer-address">
               <div class="street-row">
-                <span>36 Rue Custine</span>
-                <span class="arr-badge">18<sup>ème</sup> <span class="arr-long">Arrondissement</span><span class="arr-short">Arr</span></span>
+                <span>4 Rue du Sabot</span>
+                <span class="arr-badge">6<sup>ème</sup> <span class="arr-long">Arrondissement</span><span class="arr-short">Arr</span></span>
               </div>
-              <div class="metro-row">METRO: Chateau Rouge & others</div>
+              <div class="metro-row">METRO: Saint-Sulpice & Sèvres - Babylone</div>
             </div>
           </div>
         </article>
@@ -1188,14 +1267,15 @@
             <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
           </svg>
         </div>
-  <!-- ================= WALK ================= -->
-  <section class="category" id="walk" data-label="Walk">
-    <div class="section-heading"><span class="num">03</span><h2>Walk</h2><span class="fr-label">Areas & Parcs</span></div>
+        <div class="section-heading"><span class="num">03</span><h2>Walk</h2><span class="fr-label">Areas & Parcs</span></div>
     <div class="line-container" style="height:20px; margin-top:-10px;">
       <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
         <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
       </svg>
     </div>
+  <!-- ================= WALK ================= -->
+  <section class="category" id="walk" data-label="Walk">
+    
     <div class="wrap">
       <div class="grid">
         <article class="card span-6">
@@ -1394,14 +1474,15 @@
             <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
           </svg>
         </div>
-  <!-- ================= EVENTS ================= -->
-  <section class="category" id="events" data-label="Events">
-    <div class="section-heading"><span class="num">04</span><h2>Events</h2><span class="fr-label">Music & Art</span></div>
+         <div class="section-heading"><span class="num">04</span><h2>Events</h2><span class="fr-label">Music & Art</span></div>
     <div class="line-container" style="height:20px; margin-top:-10px;">
       <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
         <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
       </svg>
     </div>
+  <!-- ================= EVENTS ================= -->
+  <section class="category" id="events" data-label="Events">
+   
     <div class="wrap">
       <div class="grid">
         <article class="card span-5">
@@ -1534,14 +1615,15 @@
             <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
           </svg>
         </div>
-  <!-- ================= OTHER ================= -->
-  <section class="category" id="other" data-label="Other">
-    <div class="section-heading"><span class="num">05</span><h2>Other</h2><span class="fr-label">Advice & Tips</span></div>
+        <div class="section-heading"><span class="num">05</span><h2>Other</h2><span class="fr-label">Advice & Tips</span></div>
     <div class="line-container" style="height:20px; margin-top:-10px;">
       <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
         <path d="M0,10 L150,9 L300,11 L450,8 L600,12 L750,9 L900,11 L1000,10" stroke="#231c52" stroke-width="1" fill="none" />
       </svg>
     </div>
+  <!-- ================= OTHER ================= -->
+  <section class="category" id="other" data-label="Other">
+    
     <div class="wrap">
       <div class="grid">
         <article class="card span-7">
