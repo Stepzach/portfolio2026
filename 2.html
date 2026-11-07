@@ -14,22 +14,22 @@
     <meta property="twitter:url" content="https://stephenszachary.com/">
     <meta property="twitter:title" content="Zachary Stephens">
     <meta property="twitter:description" content="Product design student @ the University of Leeds">
-    
+
     <link rel="canonical" href="https://stephenszachary.com/">
     <link rel="icon" type="image/png" href="/ZSLOGO.png">
     <link rel="icon" type="image/x-icon" href="/ZSLOGO.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Manrope:wght@400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  
-   
-    
+
+
+
+
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
        html { 
     scroll-behavior: smooth; 
     background: var(--white); /* Moved here */
@@ -53,14 +53,14 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             --white: #fff;
             --grey: black;
             --light: #999999;
-            
+
             /* ── FONT VARIABLES ── */
             --font-main: 'Lexend', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --font-sans: 'Manrope', sans-serif;
         }
 
-       
+
 
         .container { 
             padding: 0 52px;
@@ -95,11 +95,11 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             letter-spacing: 0.04em;
             font-weight: 400;
             color: var(--grey);
-            
+
         }
          .nav-name img {
            margin-right:5px;
-           
+
         }
         nav a {
             font-family: var(--font-mono);
@@ -179,7 +179,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             letter-spacing: 0.06em;
             margin-top: 12px;
         }
-        
+
         /* ── SCROLL INDICATOR ── */
         .scroll-indicator {
             position: absolute;
@@ -213,7 +213,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             will-change: opacity, transform;
         }
-        
+
         .reveal-on-scroll.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -278,7 +278,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
         }
         .proj-title-main em { font-style: italic; }
         .proj-title-main a { text-decoration: none; color: inherit; }
-        
+
         .proj-sub {
             font-family: var(--font-sans) !important; /* Updated */
             font-size: 17px;
@@ -310,7 +310,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
         }
         .gallery-item {
             aspect-ratio: 16/12;
-           
+
             overflow: hidden;
         }
         .gallery-item img {
@@ -414,7 +414,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             .meta-item { padding: 22px 0; }
             .meta-value { font-size: 18px; }
             .hero-photo img { max-height: calc(100dvh - 110px); }
-            
+
             .project { grid-template-columns: 120px 1fr; }
             .proj-body { padding: 48px 72px; }
             .gallery-track { gap: 32px; }
@@ -426,7 +426,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
                 grid-template-columns: 1fr 420px;
                 gap: 100px;
             }
-            
+
             footer { padding: 44px 0; flex-direction: row; gap: 0;}
             footer a { font-size: 22px; }
         }
@@ -445,7 +445,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
         @media (min-width: 701px) {
             .proj-title-main:hover { cursor: pointer; }
             .emaillarge  { font-size: 1.1rem; padding-top: 18px }
-          
+
             .footer-mono a i.fa-arrow-right { font-size: 14px !important; }
         }
 
@@ -480,7 +480,7 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             .project { grid-template-columns: 44px 1fr; }
             .proj-body { padding: 20px 16px; }
             .proj-gallery { padding: 10px 0 10px 0; }
-            
+
             .gallery-track {
                 display: flex;
                 grid-template-columns: none;
@@ -496,15 +496,15 @@ h1, h2, p, .nav-name, .proj-sub, .meta-label, .meta-value {
             .proj-footer-body { padding: 20px 16px; }
 
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            
+
             nav a:hover { color: var(--grey); }
             .fa-brands:hover { color: var(--grey); }
             footer { flex-direction: column; gap: 12px; text-align: center; }
         }
 
         .fa-brands:hover { color: var(--black); }
-        
-        
+
+
         /* New styles for About Images */
 .about-images {
     display: flex;
@@ -550,16 +550,17 @@ body::before {
   height: 100vh;
   z-index: 9999; /* Ensures it sits on top of everything */
   pointer-events: none; /* Allows clicking through the grain */
-  
+
   /* 2. The Grain Texture (SVG data URI) */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  
+
   /* 3. Transparency and Blending */
   opacity: 0.1; /* Adjust this for subtle or intense grain */
   contrast: 150%;
   brightness: 100%;
 }
     </style>
+<link rel="stylesheet" href="legacy-typography.css">
 </head>
 <body>
 
@@ -570,7 +571,7 @@ body::before {
             Zachary Stephens
         </span>
         <span class="footer-mono">
-            
+
             <a href="https://drive.google.com/file/d/1IeWRP8qElenLNUsY86ZLhC7He6xqhmdD/view?usp=sharing" target="_blank" style="font-size:1rem">
                 CV<i class="fa-solid fa-arrow-right" style="transform:rotate(-45deg); margin-left:3px; font-size:12px"></i>
             </a>
@@ -582,7 +583,7 @@ body::before {
             <h1 class="hero-headline">
                 <span style="color:black">Product Design</span><br>Portfolio
                 <em>2026</em><br>
-                
+
             </h1>
             <div class="hero-meta">
                 <div class="meta-item">
@@ -615,7 +616,7 @@ body::before {
         <div class="work-header">
             <span class="section-label">Selected Work</span>
         </div>
-        
+
         <div class="project" style="    margin-bottom: 0px;">
             <div class="proj-index">01</div>
             <div class="proj-body">
@@ -627,7 +628,7 @@ body::before {
                       <span>Dynamic Schedule</span>
                 </div>
             </div>
-            
+
             <div class="proj-gallery">
                 <div class="gallery-track">
                     <div class="gallery-item"><img src="/Lsr-mob.png" alt="Mobile Mockup LSR"></div>
@@ -635,13 +636,13 @@ body::before {
                     <div class="gallery-item"><img src="/New-Mac-LSR.png" alt="LSR Homepage Mockup"></div>
                 </div>
             </div>
-            
+
             <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
             <div class="proj-footer-body">
                 <a href="https://thisislsr.com" class="proj-sub" target="_blank">https://thisislsr.com</a>
             </div>
         </div>
-        
+
        <div class="project" style="margin-top:0; padding-top:0; border-top:none;" >
             <div class="proj-index" >02</div>
             <div class="proj-body">
@@ -650,10 +651,10 @@ body::before {
                 <div class="proj-tags">
                     <span>Research report</span>
                     <span>Ideation</span>
-                      
+
                 </div>
             </div>
-            
+
             <div class="proj-gallery">
                 <div class="gallery-track">
                     <div class="gallery-item"><img src="/Screenshot%202026-03-30%20at%2015.40.55.png" alt="Research board"></div>
@@ -661,7 +662,7 @@ body::before {
                     <div class="gallery-item"><img src="/Screenshot%202026-03-30%20at%2015.39.59.png" alt="Floor plan"></div>
                 </div>
             </div>
-            
+
             <div class="proj-footer-label"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
             <div class="proj-footer-body">
                 <a href="https://drive.google.com/file/d/14wrNN8WhUJga5HwJBUOw7JLY9CzRohOS/view?usp=sharing" class="proj-sub" target="_blank">Report (Part 1) </a>
@@ -697,16 +698,16 @@ body::before {
             </div>
         </div>
     </div>
-    
+
     <div class="about-images">
         <div class="about-img-wrapper">
             <img class="hideer" src="/IMG_3821-ezgif.com-optimize.gif" alt="gif">
         </div>
-       
-      
+
+
     </div>
 </div>
- 
+
     </section>
 
     <footer>
@@ -752,7 +753,7 @@ body::before {
     document.addEventListener("DOMContentLoaded", () => {
         const canvasUnder = document.createElement('canvas');
         const canvasOver = document.createElement('canvas');
-        
+
         [canvasUnder, canvasOver].forEach(canvas => {
             canvas.style.position = 'absolute';
             canvas.style.top = '0';
@@ -783,7 +784,7 @@ body::before {
                 lineCap: 'round',
                 lineJoin: 'round'
             }; 
-            
+
             Object.assign(ctxUnder, styleOptions);
             Object.assign(ctxOver, styleOptions);
 
@@ -796,7 +797,7 @@ body::before {
                     right: r.right + window.scrollX 
                 };
             });
-            
+
             const imgs = document.querySelectorAll('img');
             const imgRects = getRects(imgs);
 
@@ -822,7 +823,7 @@ body::before {
             function isTooCloseToOtherLines(x, y, threshold = 80) {
                 let bx = Math.floor(x / GRID_SIZE);
                 let by = Math.floor(y / GRID_SIZE);
-                
+
                 // Check current and neighboring buckets for speed
                 for (let cx = bx - 1; cx <= bx + 1; cx++) {
                     for (let cy = by - 1; cy <= by + 1; cy++) {
@@ -846,7 +847,7 @@ body::before {
 
                 let curX = (width / numberOfLines) * i + (Math.random() * 100 - 50);
                 let curY = -100 - (Math.random() * 400); 
-                
+
                 let prevCp2X = curX + (Math.random() * 200 - 100); 
                 let prevCp2Y = curY - 150; 
 
@@ -912,7 +913,7 @@ body::before {
                             if (imgRects.some(r => x > r.left && x < r.right && y > r.top && y < r.bottom)) {
                                 imgHits++;
                             }
-                            
+
                             // 1. Text Collision Check
                             if (x > 0 && x < width && textRects.some(r => x > r.left - 45 && x < r.right + 45 && y > r.top - 35 && y < r.bottom + 35)) {
                                 textHits++;
@@ -971,7 +972,7 @@ body::before {
         }
 
         window.addEventListener('load', drawSquiggles);
-        
+
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);

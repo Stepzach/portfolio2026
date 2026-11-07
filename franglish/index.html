@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff"><meta name="description" data-i18n-content="A personal guide to good food in Paris and London. Places I’ve tried, with honest notes, photos and a map." content="A personal guide to good food in Paris and London. Places I’ve tried, with honest notes, photos and a map.">
+<link rel="canonical" href="https://stephenszachary.com/franglish/"><link rel="icon" href="assets/favicon.svg">
+<title>Zach's Frenglish Guide</title>
+<link rel="preload" href="assets/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/maplibre-gl.css"><link rel="stylesheet" href="style.css">
+<script src="assets/maplibre-gl.js" defer></script><script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#places" data-i18n="Skip to places">Skip to places</a>
+<header class="site-heading"><a class="portfolio-back" href="../" aria-label="Back to Zachary Stephens’ portfolio">← Zachary Stephens</a><h1 data-i18n="Zach's Frenglish Guide">Zach's Frenglish Guide</h1></header>
+<nav class="topbar" aria-label="Guide controls" data-i18n-aria-label="Guide controls"><div class="nav-inner"><div class="city-switch segment-switch" aria-label="Choose a city" data-i18n-aria-label="Choose a city"><button data-city="paris" class="selected" aria-pressed="true">Paris</button><button data-city="london" aria-pressed="false" data-i18n="London">London</button></div><div class="view-switch segment-switch" aria-label="View" data-i18n-aria-label="View"><button data-view="list" class="selected" aria-pressed="true"><span data-icon="list"></span><span data-i18n="List">List</span></button><button data-view="map" aria-pressed="false"><span data-icon="map"></span><span data-i18n="Map">Map</span></button></div><div class="language-switch segment-switch" role="group" aria-label="Choose a language" data-i18n-aria-label="Choose a language"><button data-lang="en" class="selected" aria-pressed="true" lang="en" title="English" aria-label="English"><span aria-hidden="true">🇬🇧</span></button><button data-lang="fr" aria-pressed="false" lang="fr" title="Français" aria-label="Français"><span aria-hidden="true">🇫🇷</span></button></div></div></nav>
+<main>
+<section id="places" class="guide" aria-label="Restaurant guide" data-i18n-aria-label="Restaurant guide">
+
+
+
+<div class="filter-row"><div class="category-bar" aria-label="Filter by type" data-i18n-aria-label="Filter by type"><button class="chip selected" data-category="all" aria-pressed="true" data-i18n="All">All</button><button class="chip" data-category="brunch" aria-pressed="false" data-i18n="Brunch">Brunch</button><button class="chip" data-category="restaurants" aria-pressed="false" data-i18n="Restaurants">Restaurants</button><button class="chip" data-category="bakery" aria-pressed="false" data-i18n="Bakeries">Bakeries</button><button class="chip" data-category="sweets" aria-pressed="false" data-i18n="Sweet treats">Sweet treats</button><button class="chip" data-category="takeaway" aria-pressed="false" data-i18n="Takeaway">Takeaway</button></div></div>
+
+<div class="content-layout"><div id="results" class="results" aria-live="polite"></div><aside id="map-panel" class="map-panel" aria-label="Places on a map" data-i18n-aria-label="Places on a map"><div class="map-shell"><div id="map" aria-label="Restaurant map" data-i18n-aria-label="Restaurant map"></div><button id="expand-map" class="map-expand"><span data-icon="expand"></span><span data-i18n="Explore the map">Explore the map</span></button><button id="fit-map" class="map-fit" title="Show all places" data-i18n-title="Show all places" aria-label="Show all places" data-i18n-aria-label="Show all places"><span data-icon="locate"></span></button><div id="map-error" class="map-error" hidden data-i18n="Map unavailable. You can still browse every place in the list.">Map unavailable. You can still browse every place in the list.</div></div><div class="map-credits"><a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">© OpenMapTiles</a><span> · </span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></div><div id="map-selection" hidden></div></aside></div>
+<div class="end-note"><span data-icon="utensils"></span><p id="end-note">That’s the list for now.</p></div>
+</section>
+</main>
+<footer><span><span data-i18n="Contact:">Contact:</span> <a class="contact-email" href="mailto:zachstep05@gmail.com">zachstep05@gmail.com</a></span><a class="text-button" href="../" data-i18n="My Portfolio">My Portfolio</a></footer>
+<dialog id="place-dialog" class="place-dialog" aria-labelledby="detail-title"><button class="close-button" id="close-detail" aria-label="Close restaurant" data-i18n-aria-label="Close restaurant"><span data-icon="close"></span></button><div id="detail-content"></div></dialog>
+<dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><button class="close-button" id="close-info" aria-label="Close" data-i18n-aria-label="Close"><span data-icon="close"></span></button><div id="info-content"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>
