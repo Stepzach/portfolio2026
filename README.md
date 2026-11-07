@@ -27,4 +27,4 @@ The guide keeps the existing Firebase web configuration for `londonrestaurants-b
 
 Newsreader is licensed under the SIL Open Font License; see `assets/newsreader-OFL.txt`. Guide photo and map credits and licenses remain in `franglish/assets/`; original photo sources are in `franglish/places.js`.
 
-Air Liquide and Hummingbird company logos were supplied by Zach via LinkedIn and stored locally. The OpenAI mark is from Simple Icons v11.15.0 (CC0). Logos remain the property of their respective owners. Company logos are presented in greyscale to match the portfolio.
+Air Liquide and Hummingbird company logos were supplied by Zach via LinkedIn and stored locally. The OpenAI mark is from Simple Icons v11.15.0 (CC0). Logos remain the property of their respective owners. Company logos retain their original colours. The Franglish project image is a 1440 × 900 capture of the guide homepage.

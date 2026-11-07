@@ -29,7 +29,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .segment-switch a { padding: 9px 13px; font-size: 17px; border-radius: 6px; line-height: 1.2; }
 .segment-switch a:first-child { background: #fff; box-shadow: 0 1px 3px #0000000d; }
 .segment-switch a:hover { background: #fff; }
-.guide-link { font-size: 17px; white-space: nowrap; }
 .portfolio { max-width: 1120px; margin: auto; }
 .intro { padding: 28px 0 32px; display: flex; gap: 35px; justify-content: space-between; align-items: start; }
 .intro p { max-width: 630px; font-size: 20px; line-height: 1.4; }
@@ -40,24 +39,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .section-heading h2 { font-size: 21px; font-weight: 500; }
 .section-heading > span { font-size: 16px; font-weight: 300; }
 .projects { display: flex; flex-direction: column; gap: 8px; }
-.project-row { display: grid; grid-template-columns: 190px minmax(0,1fr); align-items: center; gap: 24px; padding: 26px 0; }
-.project-image { display: flex; align-items: center; justify-content: center; width: 190px; min-height: 140px; border-radius: 5px; background: #f7f7f7; overflow: hidden; }
+.project-row { display: grid; grid-template-columns: 190px minmax(0,1fr); grid-template-areas: "image title" "image detail"; gap: 0 24px; padding: 26px 0; }
+.project-row > h3 { grid-area: title; align-self: end; }
+.project-body { grid-area: detail; align-self: start; }
+.project-image { grid-area: image; align-self: center; display: flex; align-items: center; justify-content: center; width: 190px; min-height: 140px; border-radius: 5px; background: #f7f7f7; overflow: hidden; }
 .project-image > img { display: block; width: 100%; height: 140px; object-fit: contain; }
-.project-body h3 { font-size: 27px; line-height: 1.13; letter-spacing: -.4px; }
-.project-body h3 a { display: block; }
-.arrow { font-size: 20px; font-weight: 400; margin-left: 8px; display: inline-block; }
+.project-row > h3 { font-size: 27px; line-height: 1.13; letter-spacing: -.4px; }
+.project-row > h3 a { display: block; }
 .project-meta { font-size: 16px; margin: 8px 0; font-weight: 300; }
 .project-body > p:last-child { font-size: 18px; line-height: 1.35; }
-.photo-stack { width: 160px; height: 190px; position: relative; background: #fff; }
-.project-image:has(.photo-stack) { background: #fff; }
-.photo-stack img { position: absolute; width: 104px; height: 116px; left: 0; top: 0; object-fit: cover; border-radius: 5px; }
-.photo-stack img:nth-child(2) { width: 132px; height: 119px; right: 0; bottom: 0; top: auto; left: auto; }
-.record-art { width: 135px; height: 135px; border-radius: 50%; border: 1px solid #000; background: repeating-radial-gradient(circle, #fff 0 6px, #000 6.5px 7px); display: grid; place-items: center; margin: 10px; }
-.record-art span { display: grid; place-items: center; width: 60px; height: 60px; background: #fff; border: 1px solid #000; border-radius: 50%; text-align: center; font-size: 15px; line-height: 1.1; font-weight: 600; }
 #experience { position: sticky; top: 98px; }
 .experience-list { list-style: none; margin: 0; padding: 0; }
 .experience-list li { display: grid; grid-template-columns: 42px minmax(0,1fr); align-items: start; gap: 13px; padding: 24px 0; border-bottom: 1px solid var(--line); }
-.company-logo { display: block; width: 42px; height: 42px; object-fit: contain; border: 1px solid var(--line); border-radius: 9px; padding: 5px; background: #fff; filter: grayscale(1); }
+.company-logo { display: block; width: 42px; height: 42px; object-fit: contain; border: 1px solid var(--line); border-radius: 9px; padding: 5px; background: #fff; }
 .experience-list h3 { font-size: 20px; line-height: 1.15; margin-bottom: 6px; }
 .experience-list p { font-size: 16px; font-weight: 300; line-height: 1.35; }
 .experience-list .role { font-size: 17px; font-weight: 400; margin-bottom: 9px; }
@@ -71,20 +65,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .about p a { text-decoration: underline; }
 .contact-link { display: inline-block; font-size: 18px; margin-top: 8px; }
 footer { max-width: 1120px; margin: auto; padding: 24px 0 32px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 16px; font-weight: 300; }
-footer > div { display: flex; flex-wrap: wrap; gap: 20px; }
+footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.social-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+.social-link svg { display: block; }
 @media (max-width: 1184px) { .nav-inner, .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
-@media (max-width: 1000px) { .content-layout { grid-template-columns: minmax(0,1fr) 260px; gap: 26px; } .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } .project-body h3 { font-size: 25px; } }
+@media (max-width: 1000px) { .content-layout { grid-template-columns: minmax(0,1fr) 260px; gap: 26px; } .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 0 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } .project-row > h3 { font-size: 25px; } }
 @media (max-width: 760px) {
   .nav-inner, .portfolio, footer { margin-left: 20px; margin-right: 20px; }
   .site-heading { padding-top: 23px; } .site-heading p { font-size: 16px; }
   .nav-inner { gap: 12px; flex-wrap: wrap; padding: 12px 0; min-height: 70px; }
-  .segment-switch a { padding: 9px 10px; font-size: 16px; } .guide-link { font-size: 16px; }
+  .segment-switch a { padding: 9px 10px; font-size: 16px; }
   .intro { padding: 24px 0 28px; } .intro p { font-size: 19px; } .intro > a { display: none; }
   .content-layout { grid-template-columns: 1fr; gap: 36px; }
-  .project-row { padding: 22px 0; grid-template-columns: 140px minmax(0,1fr); gap: 18px; }
-  .project-image { width: 140px; } .project-image > img { height: 125px; }
-  .project-body h3 { font-size: 24px; } .project-body > p:last-child { font-size: 17px; }
-  .photo-stack { width: 140px; height: 175px; } .photo-stack img { width: 90px; height: 105px; } .photo-stack img:nth-child(2) { width: 115px; height: 105px; }
+  .project-row { padding: 22px 0; grid-template-columns: minmax(0,1fr); grid-template-areas: "title" "image" "detail"; gap: 14px; }
+  .project-image { width: 100%; min-height: 0; } .project-image > img { height: auto; aspect-ratio: 8 / 5; }
+  .project-meta { margin-top: 0; }
+  .project-row > h3 { font-size: 24px; } .project-body > p:last-child { font-size: 17px; }
   #experience { position: static; } .experience-list li { grid-template-columns: 42px minmax(0,1fr); gap: 16px; }
   .experience-list h3 { font-size: 22px; } .experience-list .role { font-size: 18px; }
   .about { grid-template-columns: 150px minmax(0,1fr); gap: 24px; margin: 40px 0; padding-top: 30px; }
@@ -92,14 +88,10 @@ footer > div { display: flex; flex-wrap: wrap; gap: 20px; }
   footer { align-items: start; flex-direction: column; gap: 14px; }
 }
 @media (max-width: 420px) {
-  .nav-inner { justify-content: center; } .guide-link { padding: 2px 0; }
-  .project-row { grid-template-columns: 105px minmax(0,1fr); gap: 14px; }
-  .project-image { width: 105px; min-height: 110px; } .project-image > img { height: 110px; }
-  .project-body h3 { font-size: 23px; } .project-meta { font-size: 15px; }
-  .photo-stack { width: 105px; height: 145px; } .photo-stack img { width: 73px; height: 85px; } .photo-stack img:nth-child(2) { width: 87px; height: 85px; }
-  .record-art { width: 90px; height: 90px; } .record-art span { width: 51px; height: 51px; font-size: 13px; }
+  .nav-inner { justify-content: center; }
+  .project-row > h3 { font-size: 23px; } .project-meta { font-size: 15px; }
   .about { grid-template-columns: 1fr; } .about figure { max-width: 220px; } .about figure img { height: 260px; }
-  #work, #experience, #about { scroll-margin-top: 126px; }
+  #work, #experience, #about { scroll-margin-top: 96px; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 /* Reflect anchor navigation without requiring JavaScript. */
