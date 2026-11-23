@@ -28,6 +28,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .segment-switch a:first-child { background: #fff; box-shadow: 0 1px 3px #0000000d; }
 .segment-switch a:hover { background: #fff; }
 .cv-link { grid-area: cv; justify-self: end; display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; white-space: nowrap; }
+.nav-intro { display: none; margin: 0; }
 .portfolio { max-width: 1120px; margin: auto; }
 .intro { padding: 28px 0 32px; }
 .intro p { max-width: 630px; font-size: 18px; line-height: 1.45; }
@@ -46,7 +47,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .phone-mockup > img { width: auto; height: 156px; max-width: 100%; }
 .project-heading h3 { font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -.2px; }
 .project-heading h3 a { display: block; }
+.project-meta-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .project-meta { font-size: 15px; margin: 7px 0; font-weight: 300; }
+.project-date { flex: 0 0 auto; font-size: 15px; font-weight: 300; white-space: nowrap; }
 .project-description { font-size: 17px; line-height: 1.4; }
 #experience { min-width: 0; }
 .experience-list { list-style: none; margin: 0; padding: 0; }
@@ -71,6 +74,16 @@ footer { max-width: 1120px; margin: auto; padding: 24px 0 32px; border-top: 1px 
 footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 .social-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
 .social-link svg { display: block; }
+
+@media (min-width: 1001px) {
+  .nav-inner { grid-template-columns: minmax(0, 1fr) minmax(300px, 630px) minmax(0, 1fr); grid-template-areas: "name intro cv"; }
+  .nav-name { justify-self: start; }
+  .nav-intro { grid-area: intro; display: block; justify-self: center; max-width: 630px; font-size: 16px; line-height: 1.35; text-align: center; }
+  .segment-switch { display: none; }
+  .intro { display: none; }
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 42px; row-gap: 8px; }
+}
+
 @media (max-width: 1184px) { .nav-inner, .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
 @media (max-width: 1000px) { .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 0 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } }
 @media (max-width: 860px) { .overview-layout { grid-template-columns: 1fr; gap: 40px; } #work { margin-top: 42px; } }
@@ -89,7 +102,9 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .project-heading { align-self: center; }
   .project-image { width: 132px; }
   .phone-mockup > img { height: 132px; }
+  .project-meta-row { display: block; }
   .project-meta { margin: 7px 0 0; }
+  .project-date { display: block; margin-top: 4px; }
   .experience-list li { grid-template-columns: 42px minmax(0,1fr); gap: 16px; }
   .experience-meta { flex-direction: column; align-items: flex-start; gap: 2px; }
   .experience-date { text-align: left; white-space: normal; }
