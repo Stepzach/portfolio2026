@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <image href="leeds-student-radio-macbook.jpg" x="0" y="0" width="1536" height="1024"/>
+  <defs><clipPath id="screen"><rect x="109" y="187" width="1319" height="705"/></clipPath></defs>
+  <image href="data:image/jpeg;base64,base64: invalid argument /tmp/resonance-source.png
+Usage:	base64 [-Ddh] [-b num] [-i in_file] [-o out_file]
+  -b, --break       break encoded output up into lines of length num
+  -D, -d, --decode  decode input
+  -h, --help        display this message
+  -i, --input       input file (default: "-" for stdin)
+  -o, --output      output file (default: "-" for stdout)
+" x="109" y="187" width="1319" height="705" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)"/>
+  <rect x="429" y="148" width="677" height="30" rx="15" fill="#f8f8f8" stroke="#bababa"/>
+  <text x="767.5" y="168.5" text-anchor="middle" fill="#222" font-family="Arial, sans-serif" font-size="15">stepzach.github.io/music/</text>
+</svg>
