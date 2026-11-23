@@ -78,9 +78,10 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 @media (min-width: 1001px) {
   .nav-inner { grid-template-columns: minmax(0, 1fr) minmax(300px, 630px) minmax(0, 1fr); grid-template-areas: "name intro cv"; }
   .nav-name { justify-self: start; }
-  .nav-intro { grid-area: intro; display: block; justify-self: center; max-width: 630px; font-size: 16px; line-height: 1.35; text-align: center; }
+  .nav-intro { grid-area: intro; display: block; justify-self: center; max-width: 380px; font-size: 16px; line-height: 1.35; text-align: center; }
   .segment-switch { display: none; }
   .intro { display: none; }
+  .portfolio { padding-top: 28px; }
   .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 42px; row-gap: 8px; }
 }
 
