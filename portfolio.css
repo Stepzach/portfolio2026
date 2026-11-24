@@ -22,13 +22,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .skip:focus { top: 12px; }
 .portfolio { max-width: 1120px; margin: auto; }
 .overview-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start;     margin-top: 30px; }
-#work { margin-top: 52px; }
+#work { margin-top: 32px; }
 #work, #experience, #about { scroll-margin-top: 24px; }
-.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 0 0 18px;  }
 .section-heading h2 { font-size: 27px; font-weight: 500; line-height: 1.2; letter-spacing: -.3px; }
 .section-heading > span { font-size: 15px; font-weight: 300; }
-.projects { display: flex; flex-direction: column; gap: 8px; }
-.project-row { display: grid; grid-template-columns: 190px minmax(0,1fr); grid-template-areas: "image heading" "image detail"; gap: 0 24px; padding: 26px 0; }
+.projects { display: flex; flex-direction: column; gap: 8px; margin-top: -10px; }
+.project-row { display: grid; grid-template-columns: 190px minmax(0,1fr); grid-template-areas: "image heading" "image detail"; gap: 0 24px; padding: 20px 0; }
 .project-heading { grid-area: heading; align-self: end; }
 .project-description { grid-area: detail; align-self: start; }
 .project-image { grid-area: image; align-self: center; display: flex; align-items: center; justify-content: center; width: 190px; min-height: 0; background: #fff; }
@@ -58,10 +58,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .experience-meta { grid-area: meta; }
 .about { margin: 0; padding: 0; border: 0; display: block; }
 .about-content { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 24px; padding-top: 24px; }
-.about-collage { position: relative; width: 190px; height: 232px; margin: 0; }
+.about-collage { position: relative; width: 190px; height: 222px; margin: 0;     top: -10px; }
 .about-collage img { position: absolute; display: block; box-sizing: border-box; object-fit: cover; border: 2px solid #faf9f5; border-radius: 4px; box-shadow: 0 5px 14px #00000012; }
-.about-photo-primary { width: 154px; height: 198px; top: 10px; left: 0; transform: rotate(-3deg); z-index: 1; }
-.about-photo-secondary { width: 116px; height: 150px; right: 0; bottom: 4px; transform: rotate(4deg); z-index: 2; }
+.about-photo-primary { width: 144px; height: 188px; top: 10px; left: 0; transform: rotate(-3deg); z-index: 1; }
+.about-photo-secondary { width: 106px; height: 140px; right: 0; bottom: 12px; transform: rotate(4deg); z-index: 2; }
 .about-copy { max-width: 620px; }
 .about p { margin-bottom: 14px; font-size: 18px; }
 .about p a { text-decoration: underline; }
@@ -88,7 +88,7 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .section-heading h2 { font-size: 25px; }
   .overview-layout { gap: 36px; margin-top: 40px; }
   #work { margin-top: 40px; }
-  .project-row { padding: 22px 0; grid-template-columns: 132px minmax(0,1fr); grid-template-areas: "image heading" "detail detail"; gap: 14px 18px; align-items: center; }
+  .project-row { padding: 18px 0; grid-template-columns: 132px minmax(0,1fr); grid-template-areas: "image heading" "detail detail"; gap: 14px 18px; align-items: center; }
   .project-heading { align-self: center; }
   .project-image { width: 132px; }
   .phone-mockup > img { height: 132px; }
@@ -102,7 +102,9 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .about-collage { width: 164px; height: 204px; }
   .about-photo-primary { width: 134px; height: 174px; }
   .about-photo-secondary { width: 100px; height: 130px; }
-  .about p { font-size: 18px; }
+  .about p { font-size: 18px;
+        margin-bottom: 0;
+        margin-top: 16px; }
   footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "email cv" "updated updated"; align-items: center; text-align: left; gap: 8px 14px; }
   footer > a { grid-area: email; justify-self: start; }
   footer > .footer-meta { display: contents; }
@@ -114,9 +116,15 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .project-image { width: 116px; }
   .phone-mockup > img { height: 120px; }
   .about-content { grid-template-columns: 1fr; }
-  .about-collage { width: 220px; height: 268px; margin: 0 auto; }
-  .about-photo-primary { width: 180px; height: 234px; top: 8px; }
-  .about-photo-secondary { width: 126px; height: 164px; }
+  .about-collage {         width: 200px;
+        height: 168px;
+        margin: 0 auto;
+        top: -25px; }
+  .about-photo-primary {         width: 140px;
+        height: 180px;
+        top: 8px; }
+  .about-photo-secondary {         width: 106px;
+        height: 144px;         top: 30%; }
   #work, #experience, #about { scroll-margin-top: 96px; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
