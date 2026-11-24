@@ -88,6 +88,10 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .intro { display: none; }
   .portfolio { padding-top: 28px; }
   .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 42px; row-gap: 8px; }
+  .experience-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "company location" "meta meta"; column-gap: 12px; }
+  .experience-list h3 { grid-area: company; }
+  .experience-location { grid-area: location; align-self: baseline; margin: 0; text-align: right; white-space: nowrap; }
+  .experience-meta { grid-area: meta; }
 }
 
 @media (max-width: 1184px) { .nav-inner, .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
