@@ -21,8 +21,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .skip { position: fixed; top: -100px; left: 16px; background: #fff; padding: 12px; z-index: 1000; }
 .skip:focus { top: 12px; }
 .portfolio { max-width: 1120px; margin: auto; }
-.intro { padding: 28px 0 32px; }
-.intro p { max-width: 630px; font-size: 18px; line-height: 1.45; }
 .overview-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start; }
 #work { margin-top: 52px; }
 #work, #experience, #about { scroll-margin-top: 24px; }
@@ -67,13 +65,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .contact-link { display: inline-block; font-size: 17px; margin-top: 8px; text-decoration:underline; }
 footer { max-width: 1120px; margin: auto; padding: 24px 0 32px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 16px; font-weight: 300; }
 footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
-.social-link {    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    min-height: 30px;
-    scale: 0.9; }
-.social-link svg { display: block; }
 .footer-cv { display: inline-flex; align-items: center; min-height: 30px; }
 
 @media (min-width: 1001px) {
@@ -84,16 +75,14 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 @media (max-width: 1000px) { .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 0 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } }
 @media (max-width: 860px) {
   .portfolio { display: flex; flex-direction: column; }
-  .intro { order: 0; }
-  #work { order: 1; margin-top: 32px; }
-  .overview-layout { order: 2; grid-template-columns: 1fr; grid-template-areas: "experience" "about"; gap: 40px; margin-top: 42px; }
-  #experience { grid-area: experience; }
+  .overview-layout { order: 1; grid-template-columns: 1fr; grid-template-areas: "about" "experience"; gap: 40px; margin-top: 42px; }
   #about { grid-area: about; }
+  #experience { grid-area: experience; }
+  #work { order: 2; margin-top: 32px; }
 }
 @media (max-width: 760px) {
   .portfolio, footer { margin-left: 20px; margin-right: 20px; }
   .section-heading h2 { font-size: 25px; }
-  .intro { padding: 24px 0 28px; } .intro p { font-size: 18px; }
   .overview-layout { gap: 36px; margin-top: 40px; }
   #work { margin-top: 40px; }
   .project-row { padding: 22px 0; grid-template-columns: 132px minmax(0,1fr); grid-template-areas: "image heading" "detail detail"; gap: 14px 18px; align-items: center; }
@@ -108,12 +97,11 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .experience-date { text-align: left; white-space: normal; }
   .about-content { grid-template-columns: 150px minmax(0,1fr); gap: 24px; }
   .about figure img { height: 190px; } .about p { font-size: 18px; }
-  footer { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "email cv social" "updated updated updated"; align-items: center; text-align: left; gap: 8px 14px; }
-  footer > a:not(.social-link) { grid-area: email; justify-self: start; }
+  footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "email cv" "updated updated"; align-items: center; text-align: left; gap: 8px 14px; }
+  footer > a { grid-area: email; justify-self: start; }
   footer > .footer-meta { display: contents; }
   footer .footer-cv { grid-area: cv; justify-self: end; white-space: nowrap; }
-  footer .social-link { grid-area: social; justify-self: end; }
-  footer .footer-updated { grid-area: updated; justify-self: center; font-size: 13px; line-height: 1.2; text-align: center; }
+  footer .footer-updated { grid-area: updated; justify-self: start; font-size: 13px; line-height: 1.2; text-align: left; }
 }
 @media (max-width: 420px) {
   .project-row { grid-template-columns: 116px minmax(0,1fr); gap: 12px 16px; }
