@@ -20,21 +20,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 ::selection { background: #e5e5e5; color: #000; }
 .skip { position: fixed; top: -100px; left: 16px; background: #fff; padding: 12px; z-index: 1000; }
 .skip:focus { top: 12px; }
-.topbar { position: sticky; top: 0; z-index: 10; background: #fffffff5; backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-.nav-inner { max-width: 1120px; margin: auto; min-height: 74px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); grid-template-areas: "switch name cv"; align-items: center; column-gap: 16px; }
-.segment-switch { grid-area: switch; justify-self: start; display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--tint); }
-.nav-name { grid-area: name; justify-self: center; font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -.4px; white-space: nowrap; }
-.segment-switch a { padding: 9px 13px; font-size: 17px; border-radius: 6px; line-height: 1.2; }
-.segment-switch a:first-child { background: #fff; box-shadow: 0 1px 3px #0000000d; }
-.segment-switch a:hover { background: #fff; }
-.cv-link { grid-area: cv; justify-self: end; display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; white-space: nowrap; }
-.nav-intro { display: none; margin: 0; }
 .portfolio { max-width: 1120px; margin: auto; }
 .intro { padding: 28px 0 32px; }
 .intro p { max-width: 630px; font-size: 18px; line-height: 1.45; }
 .overview-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start; }
 #work { margin-top: 52px; }
-#work, #experience, #about { scroll-margin-top: 96px; }
+#work, #experience, #about { scroll-margin-top: 24px; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
 .section-heading h2 { font-size: 27px; font-weight: 500; line-height: 1.2; letter-spacing: -.3px; }
 .section-heading > span { font-size: 15px; font-weight: 300; }
@@ -83,18 +74,13 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
     min-height: 30px;
     scale: 0.9; }
 .social-link svg { display: block; }
+.footer-cv { display: inline-flex; align-items: center; min-height: 30px; }
 
 @media (min-width: 1001px) {
-  .nav-inner { grid-template-columns: minmax(0, 1fr) minmax(300px, 630px) minmax(0, 1fr); grid-template-areas: "name intro cv"; }
-  .nav-name { justify-self: start; }
-  .nav-intro { grid-area: intro; display: block; justify-self: center; max-width: 380px; font-size: 16px; line-height: 1.35; text-align: center; }
-  .segment-switch { display: none; }
-  .intro { display: none; }
-  .portfolio { padding-top: 28px; }
   .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 42px; row-gap: 8px; }
 }
 
-@media (max-width: 1184px) { .nav-inner, .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
+@media (max-width: 1184px) { .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
 @media (max-width: 1000px) { .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 0 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } }
 @media (max-width: 860px) {
   .portfolio { display: flex; flex-direction: column; }
@@ -105,15 +91,8 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   #about { grid-area: about; }
 }
 @media (max-width: 760px) {
-  .nav-inner, .portfolio, footer { margin-left: 20px; margin-right: 20px; }
+  .portfolio, footer { margin-left: 20px; margin-right: 20px; }
   .section-heading h2 { font-size: 25px; }
-  .cv-link { font-size: 16px; }
-  .nav-inner { position: relative; grid-template-columns: minmax(0, 1fr); grid-template-areas: "name" "switch"; row-gap: 8px; padding: 10px 0 12px; min-height: 0; }
-  .nav-name { justify-self: center; font-size: 21px; }
-  .cv-link { grid-area: auto; position: absolute; top: 10px; right: 0; min-height: 28px; }
-  #work, #experience, #about { scroll-margin-top: 132px; }
-  .segment-switch { justify-self: center; }
-  .segment-switch a { padding: 9px 10px; font-size: 16px; }
   .intro { padding: 24px 0 28px; } .intro p { font-size: 18px; }
   .overview-layout { gap: 36px; margin-top: 40px; }
   #work { margin-top: 40px; }
@@ -129,9 +108,10 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .experience-date { text-align: left; white-space: normal; }
   .about-content { grid-template-columns: 150px minmax(0,1fr); gap: 24px; }
   .about figure img { height: 190px; } .about p { font-size: 18px; }
-  footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "email social" "updated updated"; align-items: center; text-align: left; gap: 8px 16px; }
+  footer { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "email cv social" "updated updated updated"; align-items: center; text-align: left; gap: 8px 14px; }
   footer > a:not(.social-link) { grid-area: email; justify-self: start; }
   footer > .footer-meta { display: contents; }
+  footer .footer-cv { grid-area: cv; justify-self: end; white-space: nowrap; }
   footer .social-link { grid-area: social; justify-self: end; }
   footer .footer-updated { grid-area: updated; justify-self: center; font-size: 13px; line-height: 1.2; text-align: center; }
 }
@@ -142,9 +122,4 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .about-content { grid-template-columns: 1fr; } .about figure { max-width: 220px; } .about figure img { height: 260px; }
   #work, #experience, #about { scroll-margin-top: 96px; }
 }
-@media (max-width: 360px) { .segment-switch a { padding: 8px 7px; font-size: 15px; } #work, #experience, #about { scroll-margin-top: 140px; } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-/* Reflect anchor navigation without requiring JavaScript. */
-body:has(#experience:target, #about:target) .segment-switch a:first-child { background: transparent; box-shadow: none; }
-body:has(#experience:target) .segment-switch a[href="#experience"],
-body:has(#about:target) .segment-switch a[href="#about"] { background: #fff; box-shadow: 0 1px 3px #0000000d; }
