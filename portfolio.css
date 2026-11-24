@@ -51,6 +51,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .experience-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .experience-list .role { font-size: 16px; font-weight: 400; margin: 0; }
 .experience-date { margin: 0; flex: 0 0 auto; text-align: right; white-space: nowrap; }
+.experience-date-compact { display: none; }
 .experience-location { margin-top: 8px; }
 .experience-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "company location" "meta meta"; column-gap: 12px; }
 .experience-list h3 { grid-area: company; min-width: 0; overflow-wrap: anywhere; }
@@ -96,8 +97,11 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .project-meta { margin: 7px 0 0; }
   .project-date { display: block; margin-top: 4px; }
   .experience-list li { grid-template-columns: 42px minmax(0,1fr); gap: 16px; }
-  .experience-meta { flex-direction: column; align-items: flex-start; gap: 2px; }
-  .experience-date { text-align: left; white-space: normal; }
+  .experience-meta { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .experience-list .role { min-width: 0; }
+  .experience-date { text-align: right; white-space: nowrap; }
+  .experience-date-full { display: none; }
+  .experience-date-compact { display: inline; }
   .about-content { grid-template-columns: 164px minmax(0,1fr); gap: 18px; }
   .about-collage { width: 164px; height: 204px; }
   .about-photo-primary { width: 134px; height: 174px; }
