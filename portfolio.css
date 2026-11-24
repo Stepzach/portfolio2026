@@ -69,7 +69,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #000; outline-offset:
 .about-copy { max-width: 620px; }
 .about p { margin-bottom: 14px; font-size: 18px; }
 .about p a { text-decoration: underline; }
-.contact-link { display: inline-block; font-size: 17px; margin-top: 8px; }
+.contact-link { display: inline-block; font-size: 17px; margin-top: 8px; text-decoration:underline; }
 footer { max-width: 1120px; margin: auto; padding: 24px 0 32px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 16px; font-weight: 300; }
 footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 .social-link {    display: inline-flex;
