@@ -163,15 +163,15 @@ dialog { padding: 0; border: 1px solid var(--line); color: #000; background: #ff
 dialog::backdrop { background: #0006; backdrop-filter: blur(5px); }
 dialog[open] { animation: dialog-in .2s ease-out; }
 @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.99); } to { opacity: 1; transform: none; } }
-.place-dialog { width: min(980px,calc(100% - 48px)); max-height: 90dvh; border-radius: 12px; overflow: auto; }
+.place-dialog { width: min(980px,calc(100% - 48px)); max-height: 82dvh; border-radius: 12px; overflow: auto; }
 .close-button { position: sticky; top: 13px; float: right; margin-right: 13px; margin-bottom: -48px; z-index: 10; width: 36px; height: 36px; background: #fff; box-shadow: 0 1px 7px #0001; border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .close-button svg { width: 19px; height: 19px; }
 #detail-content { display: grid; grid-template-columns: 42% 58%; }
-.detail-gallery { position: sticky; top: 0; align-self: start; height: min(720px,88dvh); min-height: 470px; background: #eee9df; overflow: hidden; isolation: isolate; }
-.detail-gallery-photo { position: absolute; width: 63%; height: 66%; object-fit: cover; border: 2px solid #fff; border-radius: 2px; background: #fff; box-shadow: 0 14px 30px #00000022; }
-.detail-gallery-photo-1 { top: 15%; left: 5%; transform: rotate(-3.5deg); z-index: 1; }
-.detail-gallery-photo-2 { right: 5%; bottom: 15%; transform: rotate(3.5deg); z-index: 2; }
-.detail-gallery.is-single .detail-gallery-photo { inset: 8%; width: 84%; height: 84%; transform: rotate(-2deg); }
+.detail-gallery { position: sticky; top: 0; align-self: start; height: min(500px,72dvh); min-height: 350px; background: #fff; overflow: hidden; isolation: isolate; }
+.detail-gallery-photo { position: absolute; width: 52%; height: 58%; object-fit: cover; border: 2px solid #fff; border-radius: 2px; background: #fff; box-shadow: 0 12px 24px #00000018; }
+.detail-gallery-photo-1 { top: 20%; left: 9%; transform: rotate(-3.5deg); z-index: 1; }
+.detail-gallery-photo-2 { right: 9%; bottom: 20%; transform: rotate(3.5deg); z-index: 2; }
+.detail-gallery.is-single .detail-gallery-photo { inset: 12%; width: 76%; height: 76%; transform: rotate(-2deg); }
 .detail-body { min-width: 0; padding: 28px 26px 24px; }
 .detail-rating { margin-left: auto; padding-left: 12px; white-space: nowrap; font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 .detail-category { display: flex; align-items: baseline; font-size: 17px; font-weight: 400; margin-bottom: 10px; }
@@ -238,15 +238,15 @@ body.modal-open { overflow: hidden; }
   .map-mode .map-shell { height: 65dvh; min-height: 360px; max-height: 680px; }
   .end-note { font-size: 16px; padding: 34px 0; }
   footer { flex-wrap: wrap; justify-content: flex-start; gap: 7px 22px; font-size: 16px; padding: 22px 0 30px; }
-  .place-dialog { position: fixed; inset: auto 0 0; width: 100%; max-width: none; max-height: 94dvh; margin: 0; border: 0; border-radius: 14px 14px 0 0; overscroll-behavior: contain; }
+  .place-dialog { position: fixed; inset: auto 0 0; width: 100%; max-width: none; max-height: 88dvh; margin: 0; border: 0; border-radius: 14px 14px 0 0; overscroll-behavior: contain; }
   .place-dialog[open] { animation: sheet-in .32s cubic-bezier(.22,1,.36,1); }
   @keyframes sheet-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
   #detail-content { display: block; }
-  .detail-gallery { position: relative; height: 350px; min-height: 0; }
-  .detail-gallery-photo { width: 64%; height: 72%; }
-  .detail-gallery-photo-1 { top: 11%; left: 5%; }
-  .detail-gallery-photo-2 { right: 5%; bottom: 11%; }
-  .detail-gallery.is-single .detail-gallery-photo { inset: 8%; width: 84%; height: 84%; }
+  .detail-gallery { position: relative; height: 280px; min-height: 0; }
+  .detail-gallery-photo { width: 55%; height: 64%; }
+  .detail-gallery-photo-1 { top: 17%; left: 7%; }
+  .detail-gallery-photo-2 { right: 7%; bottom: 17%; }
+  .detail-gallery.is-single .detail-gallery-photo { inset: 12%; width: 76%; height: 76%; }
   .detail-body { padding: 23px 20px max(20px, env(safe-area-inset-bottom)); }
   .detail-body h2 { font-size: 32px; }
   .detail-category, .detail-location { font-size: 17px; }
