@@ -96,7 +96,14 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 
 @media (max-width: 1184px) { .nav-inner, .portfolio, footer { margin-left: 32px; margin-right: 32px; } }
 @media (max-width: 1000px) { .project-row { grid-template-columns: 150px minmax(0,1fr); gap: 0 18px; } .project-image { width: 150px; } .section-heading > span { display: none; } }
-@media (max-width: 860px) { .overview-layout { grid-template-columns: 1fr; gap: 40px; } #work { margin-top: 42px; } }
+@media (max-width: 860px) {
+  .portfolio { display: flex; flex-direction: column; }
+  .intro { order: 0; }
+  #work { order: 1; margin-top: 42px; }
+  .overview-layout { order: 2; grid-template-columns: 1fr; grid-template-areas: "experience" "about"; gap: 40px; margin-top: 42px; }
+  #experience { grid-area: experience; }
+  #about { grid-area: about; }
+}
 @media (max-width: 760px) {
   .nav-inner, .portfolio, footer { margin-left: 20px; margin-right: 20px; }
   .section-heading h2 { font-size: 25px; }
@@ -108,7 +115,7 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .segment-switch { justify-self: center; }
   .segment-switch a { padding: 9px 10px; font-size: 16px; }
   .intro { padding: 24px 0 28px; } .intro p { font-size: 18px; }
-  .overview-layout { gap: 36px; }
+  .overview-layout { gap: 36px; margin-top: 40px; }
   #work { margin-top: 40px; }
   .project-row { padding: 22px 0; grid-template-columns: 132px minmax(0,1fr); grid-template-areas: "image heading" "detail detail"; gap: 14px 18px; align-items: center; }
   .project-heading { align-self: center; }
