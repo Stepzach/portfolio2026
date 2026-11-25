@@ -1,4 +1,4 @@
-import {getLanguage, t} from './i18n.js';
+import {getLanguage, t} from './i18n.js?v=20261125-guide';
 
 const mapLanguages = new WeakMap();
 
