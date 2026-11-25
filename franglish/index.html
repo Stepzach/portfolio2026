@@ -5,9 +5,9 @@
 <meta name="theme-color" content="#ffffff"><meta name="description" data-i18n-content="A personal guide to good food in Paris and London. Places I’ve tried, with honest notes, photos and a map." content="A personal guide to good food in Paris and London. Places I’ve tried, with honest notes, photos and a map.">
 <link rel="canonical" href="https://stephenszachary.com/franglish/"><link rel="icon" href="assets/favicon.svg">
 <title>Zach's Frenglish Guide</title>
-<script src="theme.js?v=20261125"></script>
-<link rel="preload" href="assets/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/maplibre-gl.css"><link rel="stylesheet" href="style.css?v=20261125-compact">
-<script src="assets/maplibre-gl.js" defer></script><script type="module" src="app.js?v=20261125-guide"></script>
+<script src="theme.js?v=20261125-local-time"></script>
+<link rel="preload" href="assets/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/maplibre-gl.css"><link rel="stylesheet" href="style.css?v=20261125-toggle-spacing">
+<script src="assets/maplibre-gl.js" defer></script><script type="module" src="app.js?v=20261125-card-rating"></script>
 </head>
 <body>
 
@@ -24,8 +24,23 @@
     </div>
     <div class="preferences">
       <div class="language-switch segment-switch" role="group" aria-label="Choose a language" data-i18n-aria-label="Choose a language">
-        <button data-lang="en" class="selected" aria-pressed="true" lang="en" title="English" aria-label="English"><span aria-hidden="true">🇬🇧</span></button>
-        <button data-lang="fr" aria-pressed="false" lang="fr" title="Français" aria-label="Français"><span aria-hidden="true">🇫🇷</span></button>
+        <button data-lang="en" class="selected" aria-pressed="true" lang="en" title="English" aria-label="English">
+          <svg class="language-flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false">
+            <rect width="60" height="30" fill="#012169"/>
+            <path d="m0 0 60 30m0-30L0 30" stroke="white" stroke-width="6"/>
+            <clipPath id="saltire"><path fill="white" d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath>
+            <path d="m0 0 60 30m0-30L0 30" stroke="#c8102e" stroke-width="4" clip-path="url(#saltire)"/>
+            <path d="M30 0v30M0 15h60" stroke="white" stroke-width="10"/>
+            <path d="M30 0v30M0 15h60" stroke="#c8102e" stroke-width="6"/>
+          </svg>
+        </button>
+        <button data-lang="fr" aria-pressed="false" lang="fr" title="Français" aria-label="Français">
+          <svg class="language-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false">
+            <rect width="3" height="2" fill="#fff"/>
+            <path d="M0 0h1v2H0z" fill="#000091"/>
+            <path d="M2 0h1v2H2z" fill="#e1000f"/>
+          </svg>
+        </button>
       </div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark mode" data-i18n-aria-label="Dark mode" aria-pressed="false" title="Light / dark mode" data-i18n-title="Light / dark mode">
         <span class="theme-toggle-track" aria-hidden="true">

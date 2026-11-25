@@ -15,9 +15,12 @@ function card(raw) {
     <div class="card-photo"><img src="${esc(src.replace('.jpg', '-thumb.jpg'))}" alt="${esc(p.name)} — photo ${index + 1}" loading="lazy" width="112" height="112"></div>
   `).join('');
   return `<article class="place-card ${state.selected === p.id ? 'is-selected' : ''}" data-card="${p.id}" data-type="${p.type}">
-    <div class="photo-pair"><div class="photo-stack">${photos}</div><span class="place-rating">${p.rating.toFixed(1)}/10</span></div>
+    <div class="photo-pair"><div class="photo-stack">${photos}</div></div>
     <div class="card-body">
-      <h2 class="place-title">${esc(p.name)}</h2>
+      <div class="card-heading">
+        <h2 class="place-title">${esc(p.name)}</h2>
+        <span class="place-rating">${p.rating.toFixed(1)}/10</span>
+      </div>
       <div class="card-meta"><span>${esc(p.category)}</span>${p.tags.includes('Bouillon') ? '<span>· Bouillon</span>' : ''}${p.price ? `<span class="price">· ${esc(p.price)}</span>` : ''}</div>
       <div class="card-area">${icon('pin')}<span>${esc(p.address)}</span></div>
       <p class="card-description">${esc(p.review)}</p>
@@ -90,8 +93,11 @@ function openDetail(id, push = true) {
   $('#detail-content').innerHTML = `
     <div class="detail-gallery${p.images.length < 2 ? ' is-single' : ''}">${gallery}</div>
     <div class="detail-body">
-      <div class="detail-category">${esc(p.category)}${p.price ? ' · ' + esc(p.price) : ''}<span class="detail-rating">${p.rating.toFixed(1)}/10</span></div>
-      <h2 id="detail-title">${esc(p.name)}</h2>
+      <div class="detail-heading">
+        <div class="detail-category">${esc(p.category)}${p.price ? ' · ' + esc(p.price) : ''}</div>
+        <h2 id="detail-title">${esc(p.name)}</h2>
+        <span class="detail-rating">${p.rating.toFixed(1)}/10</span>
+      </div>
       <p class="detail-location">${esc(areaText(p))} · ${p.city === 'paris' ? 'Paris' : t('London')}</p>
       <p class="review-text">${esc(p.review)}</p>
       <p class="detail-tip">${esc(p.note)} ${esc(p.priceNote || '')}</p>
