@@ -122,7 +122,15 @@ html[data-theme="dark"] .theme-toggle-sun { color: #858580; opacity: .68; }
   transform-origin: top left;
   transform: scale(calc(var(--preview-width) / 144));
 }
-.phone-mockup > img { width: auto; height: 156px; max-width: 100%; }
+.crossword-preview {
+  display: block;
+  width: 96%;
+  height: auto;
+  pointer-events: none;
+  /* Keep the space around both panels clear on players that ignore WebM alpha. */
+  clip-path: polygon(3.82% 16.67%, 50.35% 16.67%, 50.35% 83.33%, 53.30% 83.33%,
+                     53.30% 48.61%, 97.22% 48.61%, 97.22% 83.33%, 3.82% 83.33%);
+}
 .project-heading h3 { font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -.2px; }
 .project-heading h3 a { display: block; }
 .project-meta-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
@@ -181,7 +189,6 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
   .project-row { padding: 18px 0; grid-template-columns: 132px minmax(0,1fr); grid-template-areas: "image heading" "detail detail"; gap: 14px 18px; align-items: center; }
   .project-heading { align-self: center; }
   .project-image { --preview-width: 132; }
-  .phone-mockup > img { height: 132px; }
   .project-meta-row { display: block; }
   .project-meta { margin: 7px 0 0; }
   .project-date { display: block; margin-top: 4px; }
@@ -207,7 +214,6 @@ footer > div { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 @media (max-width: 420px) {
   .project-row { grid-template-columns: 116px minmax(0,1fr); gap: 12px 16px; }
   .project-image { --preview-width: 116; }
-  .phone-mockup > img { height: 120px; }
   .about-content { grid-template-columns: 1fr; }
   .about-collage {         width: 200px;
         height: 168px;
