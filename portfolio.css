@@ -113,6 +113,7 @@ html[data-theme="dark"] .theme-toggle-sun { color: #858580; opacity: .68; }
   background-color: var(--tint);
 }
 .project-frame > img { position: absolute; inset: 0; height: 100%; padding: 2%; }
+.lsr-preview > img { padding: 6.5%; }
 .resonance-link { position: absolute; inset: 0; }
 .resonance-preview iframe {
   position: absolute;
@@ -142,6 +143,7 @@ html[data-theme="dark"] .theme-toggle-sun { color: #858580; opacity: .68; }
 .experience-list li { display: grid; grid-template-columns: 42px minmax(0, 1fr); align-items: start; gap: 13px; padding: 20px 0; border-bottom: 1px dashed var(--line); }
 .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 .company-logo { display: block; width: 42px; height: 42px; object-fit: contain; border-radius: 9px; padding: 5px; background: #fff; }
+.company-logo-openai { padding: 7px; }
 .experience-copy { min-width: 0; }
 .experience-list h3 { font-size: 19px; font-weight: 500; line-height: 1.2; margin-bottom: 2px; }
 .experience-list p { font-size: 15px; font-weight: 300; line-height: 1.35; }
