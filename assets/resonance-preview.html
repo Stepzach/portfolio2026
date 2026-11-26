@@ -11,35 +11,6 @@
     #disco-spots { display: none; }
     #disco-drop { transition: none !important; }
 
-    .music-notes {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      color: rgba(102, 83, 120, .62);
-      font: 13px/1 Georgia, "Times New Roman", serif;
-    }
-    .music-notes span {
-      position: absolute;
-      --drift: 4px;
-      animation: note-float 5s ease-in-out infinite;
-    }
-    .music-notes span:nth-child(1) { left: 13%; top: 29%; animation-delay: -1.4s; }
-    .music-notes span:nth-child(2) { right: 18%; top: 18%; --drift: -3px; font-size: 12px; animation-duration: 5.6s; }
-    .music-notes span:nth-child(3) { left: 16%; bottom: 15%; --drift: -3px; font-size: 11px; animation-delay: -3.2s; }
-    .music-notes span:nth-child(4) { right: 9%; bottom: 25%; font-size: 14px; animation-duration: 6.2s; animation-delay: -2.4s; }
-    @keyframes note-float {
-      0%, 100% { transform: translate(0, 0) rotate(-8deg); }
-      40% { transform: translate(var(--drift), -5px) rotate(7deg); }
-      72% { transform: translate(var(--drift), -1px) rotate(2deg); }
-    }
-    [data-paused] .music-notes span { animation-play-state: paused; }
-    @media (prefers-color-scheme: dark) {
-      .music-notes { color: rgba(207, 186, 220, .65); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .music-notes span { animation: none; }
-    }
-
     /* A small still from the app's icon covers loading and browsers without WebGL. */
     .poster { position: absolute; inset: 0; }
     .poster::before {
@@ -50,9 +21,6 @@
   </style>
 </head>
 <body>
-  <div class="music-notes" aria-hidden="true">
-    <span>♫</span><span>♪</span><span>♩</span><span>♫</span>
-  </div>
   <div class="poster" aria-hidden="true"><img src="resonance-poster.webp" width="64" height="64" alt=""></div>
   <script>
     // Play the music site's own engine in this thumbnail-sized viewport.
